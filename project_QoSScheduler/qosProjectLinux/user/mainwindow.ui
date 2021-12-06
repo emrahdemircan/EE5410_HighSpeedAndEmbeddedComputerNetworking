@@ -1,0 +1,2038 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1400</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>8</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Output Queue Control</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="locale">
+   <locale language="Turkish" country="Turkey"/>
+  </property>
+  <property name="iconSize">
+   <size>
+    <width>24</width>
+    <height>24</height>
+   </size>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_12">
+    <item row="0" column="0">
+     <layout class="QGridLayout" name="gridLayout_11">
+      <item row="0" column="0">
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>QOS Scheduler Type:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="schSelectComboBox">
+          <item>
+           <property name="text">
+            <string>FIFO</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Round Robin</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Weighted Round Robin</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Deficit Round Robin</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>WF2Q</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>DTABLE</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QLabel" name="label_12">
+          <property name="text">
+           <string>Eggress Link Rate in MBits/sec:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="3">
+         <widget class="QComboBox" name="egressLinkRateComboBox">
+          <item>
+           <property name="text">
+            <string>1</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>2</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>4</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>8</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>10</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="0" column="4">
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>Backlog Time in mSecs:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="5">
+         <widget class="QComboBox" name="backlogTimeSelectComboBox">
+          <item>
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>5</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>25</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>50</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>100</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>250</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>500</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>1000</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>2000</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>3000</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>4000</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>5000</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="0" column="6">
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>Queue Length In KB:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="7">
+         <widget class="QComboBox" name="queueLengthSelectComboBox">
+          <item>
+           <property name="text">
+            <string>10</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>50</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>100</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>250</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>500</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>1000</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="0" column="8">
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>138</width>
+            <height>21</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="0" column="9">
+         <widget class="QPushButton" name="sysStartButton">
+          <property name="text">
+           <string>Start</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="10">
+         <widget class="QPushButton" name="sysStopButton">
+          <property name="text">
+           <string>Stop</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="1" column="0">
+       <widget class="QTabWidget" name="tabWidget">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>8</pointsize>
+         </font>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <widget class="QWidget" name="statTab">
+         <attribute name="title">
+          <string>Statistics and Logs</string>
+         </attribute>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <widget class="QTableWidget" name="statsTable">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>280</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>6</pointsize>
+             </font>
+            </property>
+            <property name="autoScrollMargin">
+             <number>20</number>
+            </property>
+            <property name="editTriggers">
+             <set>QAbstractItemView::NoEditTriggers</set>
+            </property>
+            <property name="selectionMode">
+             <enum>QAbstractItemView::NoSelection</enum>
+            </property>
+            <property name="cornerButtonEnabled">
+             <bool>false</bool>
+            </property>
+            <property name="rowCount">
+             <number>15</number>
+            </property>
+            <attribute name="horizontalHeaderVisible">
+             <bool>false</bool>
+            </attribute>
+            <attribute name="horizontalHeaderDefaultSectionSize">
+             <number>101</number>
+            </attribute>
+            <attribute name="horizontalHeaderMinimumSectionSize">
+             <number>101</number>
+            </attribute>
+            <attribute name="horizontalHeaderStretchLastSection">
+             <bool>false</bool>
+            </attribute>
+            <attribute name="verticalHeaderVisible">
+             <bool>false</bool>
+            </attribute>
+            <attribute name="verticalHeaderCascadingSectionResizes">
+             <bool>false</bool>
+            </attribute>
+            <attribute name="verticalHeaderDefaultSectionSize">
+             <number>16</number>
+            </attribute>
+            <attribute name="verticalHeaderMinimumSectionSize">
+             <number>16</number>
+            </attribute>
+            <attribute name="verticalHeaderStretchLastSection">
+             <bool>false</bool>
+            </attribute>
+            <row>
+             <property name="text">
+              <string/>
+             </property>
+            </row>
+            <row>
+             <property name="text">
+              <string/>
+             </property>
+            </row>
+            <row>
+             <property name="text">
+              <string/>
+             </property>
+            </row>
+            <row>
+             <property name="text">
+              <string/>
+             </property>
+            </row>
+            <row>
+             <property name="text">
+              <string/>
+             </property>
+            </row>
+            <row>
+             <property name="text">
+              <string/>
+             </property>
+            </row>
+            <row>
+             <property name="text">
+              <string/>
+             </property>
+            </row>
+            <row>
+             <property name="text">
+              <string/>
+             </property>
+            </row>
+            <row>
+             <property name="text">
+              <string/>
+             </property>
+            </row>
+            <row>
+             <property name="text">
+              <string/>
+             </property>
+            </row>
+            <row>
+             <property name="text">
+              <string/>
+             </property>
+            </row>
+            <row>
+             <property name="text">
+              <string/>
+             </property>
+            </row>
+            <row>
+             <property name="text">
+              <string/>
+             </property>
+            </row>
+            <row>
+             <property name="text">
+              <string/>
+             </property>
+            </row>
+            <row>
+             <property name="text">
+              <string/>
+             </property>
+            </row>
+            <column>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>6</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>6</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>6</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>6</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>6</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>6</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>6</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>6</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>6</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>6</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string/>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string/>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string/>
+             </property>
+            </column>
+            <item row="0" column="0">
+             <property name="text">
+              <string>Ethernet RX</string>
+             </property>
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="background">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>0</red>
+                <green>170</green>
+                <blue>255</blue>
+               </color>
+              </brush>
+             </property>
+            </item>
+            <item row="0" column="1">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="background">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>0</red>
+                <green>170</green>
+                <blue>255</blue>
+               </color>
+              </brush>
+             </property>
+            </item>
+            <item row="0" column="2">
+             <property name="text">
+              <string>Ethernet Scheduler</string>
+             </property>
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="background">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>0</red>
+                <green>255</green>
+                <blue>255</blue>
+               </color>
+              </brush>
+             </property>
+            </item>
+            <item row="0" column="3">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="background">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>0</red>
+                <green>255</green>
+                <blue>255</blue>
+               </color>
+              </brush>
+             </property>
+            </item>
+            <item row="0" column="4">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="background">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>0</red>
+                <green>255</green>
+                <blue>255</blue>
+               </color>
+              </brush>
+             </property>
+            </item>
+            <item row="0" column="5">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="background">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>0</red>
+                <green>255</green>
+                <blue>255</blue>
+               </color>
+              </brush>
+             </property>
+            </item>
+            <item row="0" column="6">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="background">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>0</red>
+                <green>255</green>
+                <blue>255</blue>
+               </color>
+              </brush>
+             </property>
+            </item>
+            <item row="0" column="7">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="background">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>0</red>
+                <green>255</green>
+                <blue>255</blue>
+               </color>
+              </brush>
+             </property>
+            </item>
+            <item row="0" column="8">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="font">
+              <font>
+               <weight>50</weight>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="background">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>0</red>
+                <green>255</green>
+                <blue>255</blue>
+               </color>
+              </brush>
+             </property>
+            </item>
+            <item row="0" column="9">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="background">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>0</red>
+                <green>255</green>
+                <blue>255</blue>
+               </color>
+              </brush>
+             </property>
+            </item>
+            <item row="0" column="10">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="background">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>0</red>
+                <green>255</green>
+                <blue>255</blue>
+               </color>
+              </brush>
+             </property>
+            </item>
+            <item row="0" column="11">
+             <property name="text">
+              <string>Ethernet Tx</string>
+             </property>
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="background">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>199</red>
+                <green>255</green>
+                <blue>227</blue>
+               </color>
+              </brush>
+             </property>
+            </item>
+            <item row="0" column="12">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="background">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>199</red>
+                <green>255</green>
+                <blue>227</blue>
+               </color>
+              </brush>
+             </property>
+            </item>
+            <item row="1" column="0">
+             <property name="text">
+              <string>Eth. Pack. In</string>
+             </property>
+            </item>
+            <item row="1" column="1">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="1" column="2">
+             <property name="text">
+              <string>Eth. Pack. In</string>
+             </property>
+            </item>
+            <item row="1" column="3">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="1" column="4">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="1" column="5">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="1" column="6">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="1" column="7">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="1" column="8">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="1" column="9">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="1" column="10">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="1" column="11">
+             <property name="text">
+              <string>Eth. Pack. In</string>
+             </property>
+            </item>
+            <item row="1" column="12">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="2" column="0">
+             <property name="text">
+              <string>Queued</string>
+             </property>
+            </item>
+            <item row="2" column="1">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="2" column="2">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="2" column="3">
+             <property name="text">
+              <string>Queued</string>
+             </property>
+             <property name="font">
+              <font>
+               <italic>true</italic>
+              </font>
+             </property>
+            </item>
+            <item row="2" column="4">
+             <property name="text">
+              <string>Not queued</string>
+             </property>
+             <property name="font">
+              <font>
+               <italic>true</italic>
+              </font>
+             </property>
+            </item>
+            <item row="2" column="5">
+             <property name="text">
+              <string>Dequeued</string>
+             </property>
+             <property name="font">
+              <font>
+               <italic>true</italic>
+              </font>
+             </property>
+            </item>
+            <item row="2" column="6">
+             <property name="text">
+              <string>Min Q Delay(sec:nsec)</string>
+             </property>
+             <property name="font">
+              <font>
+               <italic>true</italic>
+              </font>
+             </property>
+            </item>
+            <item row="2" column="7">
+             <property name="text">
+              <string>Max Q Delay(sec:nsec)</string>
+             </property>
+             <property name="font">
+              <font>
+               <italic>true</italic>
+              </font>
+             </property>
+            </item>
+            <item row="2" column="8">
+             <property name="text">
+              <string>Avg Q Delay (msec)</string>
+             </property>
+             <property name="font">
+              <font>
+               <italic>true</italic>
+              </font>
+             </property>
+            </item>
+            <item row="2" column="9">
+             <property name="text">
+              <string>Current Q Size</string>
+             </property>
+             <property name="font">
+              <font>
+               <italic>true</italic>
+              </font>
+             </property>
+            </item>
+            <item row="2" column="10">
+             <property name="text">
+              <string>Overflowed Bytes</string>
+             </property>
+             <property name="font">
+              <font>
+               <italic>true</italic>
+              </font>
+             </property>
+            </item>
+            <item row="2" column="11">
+             <property name="text">
+              <string>Queued</string>
+             </property>
+            </item>
+            <item row="2" column="12">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="3" column="0">
+             <property name="text">
+              <string>Not queued</string>
+             </property>
+            </item>
+            <item row="3" column="1">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="3" column="2">
+             <property name="text">
+              <string>Queue 1</string>
+             </property>
+            </item>
+            <item row="3" column="3">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="3" column="4">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="3" column="5">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="3" column="6">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="3" column="7">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="3" column="8">
+             <property name="text">
+              <string>-</string>
+             </property>
+             <property name="font">
+              <font>
+               <italic>false</italic>
+              </font>
+             </property>
+            </item>
+            <item row="3" column="9">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="3" column="10">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="3" column="11">
+             <property name="text">
+              <string>Not queued</string>
+             </property>
+            </item>
+            <item row="3" column="12">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="4" column="0">
+             <property name="text">
+              <string>Dequeued</string>
+             </property>
+            </item>
+            <item row="4" column="1">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="4" column="2">
+             <property name="text">
+              <string>Queue 2</string>
+             </property>
+            </item>
+            <item row="4" column="3">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="4" column="4">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="4" column="5">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="4" column="6">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="4" column="7">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="4" column="8">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="4" column="9">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="4" column="10">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="4" column="11">
+             <property name="text">
+              <string>Dequeued</string>
+             </property>
+            </item>
+            <item row="4" column="12">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="5" column="0">
+             <property name="text">
+              <string>Processed</string>
+             </property>
+            </item>
+            <item row="5" column="1">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="5" column="2">
+             <property name="text">
+              <string>Queue 3</string>
+             </property>
+            </item>
+            <item row="5" column="3">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="5" column="4">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="5" column="5">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="5" column="6">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="5" column="7">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="5" column="8">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="5" column="9">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="5" column="10">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="5" column="11">
+             <property name="text">
+              <string>Processed</string>
+             </property>
+            </item>
+            <item row="5" column="12">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="6" column="0">
+             <property name="text">
+              <string>Data Processed</string>
+             </property>
+            </item>
+            <item row="6" column="1">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="6" column="2">
+             <property name="text">
+              <string>Queue 4</string>
+             </property>
+             <property name="font">
+              <font>
+               <weight>50</weight>
+               <bold>false</bold>
+              </font>
+             </property>
+            </item>
+            <item row="6" column="3">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="6" column="4">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="6" column="5">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="6" column="6">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="6" column="7">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="6" column="8">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="6" column="9">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="6" column="10">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="6" column="11">
+             <property name="text">
+              <string>Data Processed</string>
+             </property>
+            </item>
+            <item row="6" column="12">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="7" column="0">
+             <property name="text">
+              <string>IPC Processed</string>
+             </property>
+            </item>
+            <item row="7" column="1">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="7" column="2">
+             <property name="text">
+              <string>Queue 5</string>
+             </property>
+            </item>
+            <item row="7" column="3">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="7" column="4">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="7" column="5">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="7" column="6">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="7" column="7">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="7" column="8">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="7" column="9">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="7" column="10">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="7" column="11">
+             <property name="text">
+              <string>IPC Processed</string>
+             </property>
+            </item>
+            <item row="7" column="12">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="8" column="0">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="8" column="1">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="8" column="2">
+             <property name="text">
+              <string>Queue 6</string>
+             </property>
+            </item>
+            <item row="8" column="3">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="8" column="4">
+             <property name="text">
+              <string>-</string>
+             </property>
+             <property name="font">
+              <font>
+               <weight>50</weight>
+               <bold>false</bold>
+              </font>
+             </property>
+            </item>
+            <item row="8" column="5">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="8" column="6">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="8" column="7">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="8" column="8">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="8" column="9">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="8" column="10">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="8" column="11">
+             <property name="text">
+              <string>Eth. Pack. Out</string>
+             </property>
+            </item>
+            <item row="8" column="12">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="9" column="0">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="9" column="1">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="9" column="2">
+             <property name="text">
+              <string>Queue 7</string>
+             </property>
+            </item>
+            <item row="9" column="3">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="9" column="4">
+             <property name="text">
+              <string>-</string>
+             </property>
+             <property name="font">
+              <font>
+               <weight>50</weight>
+               <bold>false</bold>
+              </font>
+             </property>
+            </item>
+            <item row="9" column="5">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="9" column="6">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="9" column="7">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="9" column="8">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="9" column="9">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="9" column="10">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="9" column="11">
+             <property name="text">
+              <string>Send Succeded</string>
+             </property>
+            </item>
+            <item row="9" column="12">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="10" column="0">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="10" column="1">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="10" column="2">
+             <property name="text">
+              <string>Queue 8</string>
+             </property>
+             <property name="font">
+              <font>
+               <weight>50</weight>
+               <bold>false</bold>
+              </font>
+             </property>
+            </item>
+            <item row="10" column="3">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="10" column="4">
+             <property name="text">
+              <string>-</string>
+             </property>
+             <property name="font">
+              <font>
+               <weight>50</weight>
+               <bold>false</bold>
+              </font>
+             </property>
+            </item>
+            <item row="10" column="5">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="10" column="6">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="10" column="7">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="10" column="8">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="10" column="9">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="10" column="10">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="10" column="11">
+             <property name="text">
+              <string>Send Failed</string>
+             </property>
+            </item>
+            <item row="10" column="12">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="11" column="0">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="11" column="1">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="11" column="2">
+             <property name="text">
+              <string>Processed</string>
+             </property>
+             <property name="font">
+              <font>
+               <weight>50</weight>
+               <bold>false</bold>
+              </font>
+             </property>
+            </item>
+            <item row="11" column="3">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="11" column="4">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="11" column="5">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="11" column="8">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="11" column="9">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="12" column="0">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="12" column="1">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="12" column="2">
+             <property name="text">
+              <string>Data Processed</string>
+             </property>
+             <property name="font">
+              <font>
+               <weight>50</weight>
+               <bold>false</bold>
+              </font>
+             </property>
+            </item>
+            <item row="12" column="3">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="12" column="4">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="12" column="5">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="12" column="8">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="12" column="9">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="13" column="0">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="13" column="1">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="13" column="2">
+             <property name="text">
+              <string>Send Succeded</string>
+             </property>
+            </item>
+            <item row="13" column="3">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="13" column="4">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="13" column="5">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="13" column="8">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="13" column="9">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="14" column="0">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="14" column="1">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="14" column="2">
+             <property name="text">
+              <string>Send Failed</string>
+             </property>
+             <property name="font">
+              <font>
+               <weight>50</weight>
+               <bold>false</bold>
+              </font>
+             </property>
+            </item>
+            <item row="14" column="3">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="14" column="4">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="font">
+              <font>
+               <weight>50</weight>
+               <bold>false</bold>
+              </font>
+             </property>
+            </item>
+            <item row="14" column="5">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="14" column="8">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="14" column="9">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <layout class="QGridLayout" name="gridLayout_10">
+            <item row="0" column="0">
+             <spacer name="horizontalSpacer_3">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="0" column="1">
+             <layout class="QGridLayout" name="gridLayout_2">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_4">
+                <property name="text">
+                 <string>Q1 Usage</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QProgressBar" name="progressBar_Q1_Length">
+                <property name="minimumSize">
+                 <size>
+                  <width>140</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>8</pointsize>
+                 </font>
+                </property>
+                <property name="maximum">
+                 <number>100</number>
+                </property>
+                <property name="value">
+                 <number>0</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="0" column="2">
+             <layout class="QGridLayout" name="gridLayout_3">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_5">
+                <property name="text">
+                 <string>Q2 Usage</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QProgressBar" name="progressBar_Q2_Length">
+                <property name="minimumSize">
+                 <size>
+                  <width>140</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximum">
+                 <number>100</number>
+                </property>
+                <property name="value">
+                 <number>0</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="0" column="3">
+             <layout class="QGridLayout" name="gridLayout_4">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_6">
+                <property name="text">
+                 <string>Q3 Usage</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QProgressBar" name="progressBar_Q3_Length">
+                <property name="minimumSize">
+                 <size>
+                  <width>140</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="minimum">
+                 <number>0</number>
+                </property>
+                <property name="maximum">
+                 <number>100</number>
+                </property>
+                <property name="value">
+                 <number>-1</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="0" column="4">
+             <layout class="QGridLayout" name="gridLayout_5">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_7">
+                <property name="text">
+                 <string>Q4 Usage</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QProgressBar" name="progressBar_Q4_Length">
+                <property name="minimumSize">
+                 <size>
+                  <width>140</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximum">
+                 <number>100</number>
+                </property>
+                <property name="value">
+                 <number>0</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="0" column="5">
+             <layout class="QGridLayout" name="gridLayout_6">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_8">
+                <property name="text">
+                 <string>Q5 Usage</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QProgressBar" name="progressBar_Q5_Length">
+                <property name="minimumSize">
+                 <size>
+                  <width>140</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximum">
+                 <number>100</number>
+                </property>
+                <property name="value">
+                 <number>0</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="0" column="6">
+             <layout class="QGridLayout" name="gridLayout_7">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_9">
+                <property name="text">
+                 <string>Q6 Usage</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QProgressBar" name="progressBar_Q6_Length">
+                <property name="minimumSize">
+                 <size>
+                  <width>140</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximum">
+                 <number>100</number>
+                </property>
+                <property name="value">
+                 <number>0</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="0" column="7">
+             <layout class="QGridLayout" name="gridLayout_8">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_10">
+                <property name="text">
+                 <string>Q7 Usage</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QProgressBar" name="progressBar_Q7_Length">
+                <property name="minimumSize">
+                 <size>
+                  <width>140</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximum">
+                 <number>100</number>
+                </property>
+                <property name="value">
+                 <number>0</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="0" column="8">
+             <layout class="QGridLayout" name="gridLayout_9">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_11">
+                <property name="text">
+                 <string>Q8 Usage</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QProgressBar" name="progressBar_Q8_Length">
+                <property name="minimumSize">
+                 <size>
+                  <width>140</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximum">
+                 <number>100</number>
+                </property>
+                <property name="value">
+                 <number>0</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="0" column="9">
+             <spacer name="horizontalSpacer_2">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QTextEdit" name="logEdit">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>10</width>
+              <height>1</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Courier 10 Pitch</family>
+              <pointsize>9</pointsize>
+             </font>
+            </property>
+            <property name="autoFillBackground">
+             <bool>false</bool>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Sunken</enum>
+            </property>
+            <property name="lineWidth">
+             <number>1</number>
+            </property>
+            <property name="midLineWidth">
+             <number>0</number>
+            </property>
+            <property name="lineWrapColumnOrWidth">
+             <number>1</number>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
