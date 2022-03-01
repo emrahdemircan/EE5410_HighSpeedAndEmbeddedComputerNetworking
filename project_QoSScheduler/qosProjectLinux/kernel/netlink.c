@@ -44,20 +44,17 @@ static int nlModuleHandler(T_MSG_NL_SHORT *msg, int msgLen, int msgSeq, int pid)
 /* GLOBALS */
 /********************************************************************************/
 /*thread structures*/
-static T_KTHREAD nlThread;
-static int nlThread_running = 0;
-/*nlQueue*/
+static T_KTHREAD            nlThread;
+static int                  nlThread_running = 0;
 static struct sk_buff_head	nlQueue;
-/*nl thread wait queue*/
 static wait_queue_head_t	waitNlQueue;
-/*netlink*/
-static struct sock *nl_sk=NULL;
-int uspPid;/*user space process pid on the other side of the netlink socket*/
-
-unsigned char rcvdNlMessage[T_MSG_NL_LONG_SIZE];
-unsigned char nlMessageToSend[T_MSG_NL_LONG_SIZE];
-T_MSG_NL_SHORT nlMsgShort;
-T_MSG_NL_LONG nlMsgLong;
+static int                  waitNlQueueFlag;
+static struct sock*         nl_sk=NULL;
+int                         uspPid;/*user space process pid on the other side of the netlink socket*/
+unsigned char               rcvdNlMessage[T_MSG_NL_LONG_SIZE];
+unsigned char               nlMessageToSend[T_MSG_NL_LONG_SIZE];
+T_MSG_NL_SHORT              nlMsgShort;
+T_MSG_NL_LONG               nlMsgLong;
 /********************************************************************************/
 /* EXTERNS */
 /********************************************************************************/
@@ -94,6 +91,7 @@ static void stopNlWakeUpHrTimer(void)
 static enum hrtimer_restart nlWakeUpHrTimerCallback(struct hrtimer *timer)
 {
     hrtimer_forward_now(timer,nlThread.wakeUpAbsKtime);
+    waitNlQueueFlag = 1;
     wake_up_interruptible(&waitNlQueue);
     return HRTIMER_RESTART;
 }/*nlWakeUpHrTimerCallback*/
@@ -112,6 +110,7 @@ int headNlQueue(struct sk_buff *skb,T_MESSAGE_TYPE msgType)
     setSkbMsgType(skb,msgType);
     skb_queue_head(&nlQueue, skb);
     outputQueueModuleCb.stats.nl.queued++;
+    waitNlQueueFlag = 1;
     wake_up_interruptible(&waitNlQueue);
     return 1;
 }/*headNlQueue*/
@@ -130,6 +129,7 @@ int tailNlQueue(struct sk_buff *skb,T_MESSAGE_TYPE msgType)
     setSkbMsgType(skb,msgType);
     skb_queue_tail(&nlQueue, skb);
     outputQueueModuleCb.stats.nl.queued++;
+    waitNlQueueFlag = 1;
     wake_up_interruptible(&waitNlQueue);
     return 1;
 }/*tailNlQueue*/
@@ -145,19 +145,22 @@ int initNlThread(void)
         LOG_INFO((logInfoBuf,"already running.\n"))
         return -1;
     }
-    LOG_INFO((logInfoBuf,"initializing.\n"))
 
     /*set user process id to 0*/
     uspPid = 0;
 
+    /* start thread */
+    LOG_INFO((logInfoBuf,"initializing:\n"))
     memset(&nlThread, 0, sizeof(T_KTHREAD));
     nlThread.thread = kthread_run((void *)nlThreadRoutine, &nlThread, NL_THREAD_NAME);
-    if (IS_ERR(nlThread.thread))
+    if(IS_ERR(nlThread.thread))
     {
         LOG_INFO((logInfoBuf,"unable to start!\n"))
         return 0;
     }
-    while (nlThread_running != 1)
+
+    /* wait until thread start by checking thread running flag */
+    while(nlThread_running != 1)
     {
         msleep(10);
     }
@@ -169,7 +172,9 @@ int initNlThread(void)
 /********************************/
 int killNlThread(void)
 {
+    struct pid* pidPtr;
     int err;
+
     /*stop nlThreadRoutine*/
     if(nlThread_running != 1)
     {
@@ -177,21 +182,26 @@ int killNlThread(void)
         return -1;
     }
     LOG_INFO((logInfoBuf,"stopping.\n"))
-    lock_kernel();
-    err = kill_pid(nlThread.thread->pids[PIDTYPE_PID].pid, SIGKILL, 1);
-    unlock_kernel();
-    /*oldurmek istedigimiz thread waitQueue'da duruyor olabilir. Uyandiralim ki SIG_KILL'i islesin*/
+    LOCK_KERNEL();
+    pidPtr = task_pid(nlThread.thread);
+    err = kill_pid(pidPtr, SIGKILL, 1);
+    UNLOCK_KERNEL();
+    /* wakeup thread to process SIGKILL */
+    waitNlQueueFlag = 1;
     wake_up_interruptible(&waitNlQueue);
-    if (err < 0)
+    /* check if kill_pid succeeded */
+    if(err < 0)
     {
         LOG_INFO((logInfoBuf,"unknown error %d while terminating.\n",err))
         return 0;
     }
     else
     {
-        while (nlThread_running == 1)
+        /* kill_pid succeeded, wait for thread exit by checking thread running flag */
+        while(nlThread_running == 1)
         {
-            msleep(10);
+            LOG_INFO((logInfoBuf,"waiting...\n"))
+            msleep(1000);
             THREAD_YIELD
         }
         LOG_INFO((logInfoBuf,"successfully killed.\n"))
@@ -205,18 +215,15 @@ int killNlThread(void)
 static void nlThreadRoutine(T_KTHREAD* wThread)
 {
     struct sk_buff *skb;
-    /*struct sched_param param;*/
+    DEFINE_WAIT(wait);
+
     LOG_INFO((logInfoBuf,"initializing.\n"))
     /* kernel thread initialization */
-    lock_kernel();
+    LOCK_KERNEL();
     current->flags |= PF_NOFREEZE;
-    /* daemonize (take care with signals, after daemonize() they are disabled) */
-    daemonize(MODULE_NAME);
+    /*daemonize(MODULE_NAME);*/
     allow_signal(SIGKILL);
-
-    /*param.sched_priority = 90;
-    sched_setscheduler(0,SCHED_FIFO,&param);*/
-    unlock_kernel();
+    UNLOCK_KERNEL();
 
     /*initialize nlQueue...*/
     LOG_INFO((logInfoBuf,"initializing nlQueue.\n"))
@@ -224,9 +231,15 @@ static void nlThreadRoutine(T_KTHREAD* wThread)
     /*initialize waitNlQueue*/
     LOG_INFO((logInfoBuf,"initializing waitNlQueue.\n"))
     init_waitqueue_head(&waitNlQueue);
+    waitNlQueueFlag = 0;
 
     /*initialize netlink*/
-    netlinkCreate();
+    if(-1 == netlinkCreate())
+    {
+        skb_queue_purge(&nlQueue);
+        nlThread_running = 0;
+        return;
+    }
 
     /*initialize and start wake up hr timer...*/
     startNlWakeUpHrTimer();
@@ -236,14 +249,13 @@ static void nlThreadRoutine(T_KTHREAD* wThread)
 
     while(1)
     {
-        if (signal_pending(current))
+        if(signal_pending(current))
         {
             break;
         }
 
         /*sleep until someone wakes up!*/
-        /*someone is nlNetlinkPackHandler*/
-        interruptible_sleep_on(&waitNlQueue);
+        wait_event_interruptible(waitNlQueue, waitNlQueueFlag != 0 );
 
         while( (skb = skb_dequeue(&nlQueue)) != NULL)
         {
@@ -260,8 +272,8 @@ static void nlThreadRoutine(T_KTHREAD* wThread)
                     kfree_skb(skb);
                 break;
             }/*switch(getMsgTypeSkb(skb))*/
-
             outputQueueModuleCb.stats.nl.processed++;
+            waitNlQueueFlag = 0;
             THREAD_YIELD
         }
     }
@@ -336,8 +348,12 @@ static int nlThreadHandler_MSG_NETLINK(struct sk_buff *skb)
 /********************************/
 static int netlinkCreate(void)
 {
+    struct netlink_kernel_cfg cfg;
+
+    cfg.input = netlinkRecvMsg;
+    cfg.groups = 1;
     LOG_INFO((logInfoBuf,"creating socket.\n"))
-    nl_sk = netlink_kernel_create(&init_net,NETLINK_USER,0,netlinkRecvMsg,NULL,THIS_MODULE);
+    nl_sk = netlink_kernel_create(&init_net,NETLINK_USER,&cfg);
     if(nl_sk == NULL)
     {
         LOG_INFO((logInfoBuf,"error creating socket.\n"))
@@ -401,6 +417,7 @@ int netlinkSendMsg(unsigned short moduleId, void* data, int dataLen)
 void netlinkLogMessage(char* str)
 {
     int len;
+
     len = strlen(str);
     if( len >= LOG_PAYLOAD_LEN )
     {
@@ -428,7 +445,7 @@ void netlinkSendCommand(unsigned short command)
 /* netlinkSend */
 /********************************/
 static void netlinkSend(struct sk_buff* skb, int pid)
-    {
+{
     outputQueueModuleCb.stats.nl.nlSent++;
     /*LOG_INFO((logInfoBuf,"(#%d)(pid:%d)\n",outputQueueModuleCb.stats.nl.nlSent, pid))*/
     if(nl_sk != NULL)
@@ -494,7 +511,7 @@ static int nlModuleHandler(T_MSG_NL_SHORT *msg, int msgLen, int msgSeq, int pid)
         case NL_MSGTYPE_SET_BACKLOG_TIME:
             LOG_INFO((logInfoBuf,"msgType: NL_MSGTYPE_SET_BACKLOG_TIME.\n"))
             setBacklogTime( *((int*)(((T_MSG_NL_LONG*)msg)->payload)) );
-        break;        
+        break;
         case NL_MSGTYPE_SET_SCHEDULERQUEUE_LENGTH:
             LOG_INFO((logInfoBuf,"msgType: NL_MSGTYPE_SET_SCHEDULERQUEUE_LENGTH.\n"))
             setSchedulerQueueLength( *((int*)(((T_MSG_NL_LONG*)msg)->payload)) );

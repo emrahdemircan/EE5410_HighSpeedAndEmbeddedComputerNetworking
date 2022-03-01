@@ -27,8 +27,8 @@
 #include <linux/skbuff.h>
 
 #include <linux/kthread.h>
-#include <linux/smp_lock.h> /*lock unlock_kernel icin ekledim...*/
-#include <linux/sched.h>/*kill_proc icin ekledim...*/
+//#include <linux/smp_lock.h> /*lock UNLOCK_KERNEL icin ekledim...*/
+#include <linux/sched/signal.h>/*kill_proc icin ekledim...*/
 
 #include <linux/errno.h>
 #include <linux/types.h>

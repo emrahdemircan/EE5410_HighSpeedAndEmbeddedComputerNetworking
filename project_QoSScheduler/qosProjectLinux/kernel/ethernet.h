@@ -18,10 +18,8 @@
 #define ETHERNETSCHEDULER_THREAD_NAME   "ethernetSch"
 #define ETHERNETRECEIVER_THREAD_NAME	"ethernetRx"
 
-#define ETHERNET_INPUT_SIDE				'0'
-#define ETHERNET_OUTPUT_SIDE			'1'
-#define ETHERNET_INPUT_SIDE_NAME		"eth0"
-#define ETHERNET_OUTPUT_SIDE_NAME		"eth1"
+#define ETHERNET_INPUT_SIDE_NAME		"enp2s0"
+#define ETHERNET_OUTPUT_SIDE_NAME		"enp2s0"
 
 #define ETHERTYPE_TOBESTOLEN_BEGIN    		0x8800
 #define ETHERTYPE_TOBESTOLEN_END    		0x8807
@@ -81,8 +79,8 @@ static inline struct sk_buff* createEthernetPacketSkb(unsigned short etherType,u
 
     skb_reserve(currentSkb, ETH_HLEN + 2); /*reserve islemini yapinca skb data ptr ilerliyor, head ayni kaliyor.*/
     /*headroomdan ethernet basligi icin yer aciyoruz.headroom da 2 bayt yer kaldi*/
-    currentSkb->mac_header = skb_push(currentSkb,ETH_HLEN);
-    eh = (struct ethhdr*)(currentSkb->mac_header);
+    eh = (struct ethhdr*)skb_push(currentSkb,ETH_HLEN);
+    currentSkb->mac_header = (unsigned char*)eh - (unsigned char*)(currentSkb->head);
     memcpy(eh->h_dest, (void *)dest, ETH_ALEN);
     memcpy(eh->h_source, (void *)src, ETH_ALEN);
     eh->h_proto = htons(etherType);

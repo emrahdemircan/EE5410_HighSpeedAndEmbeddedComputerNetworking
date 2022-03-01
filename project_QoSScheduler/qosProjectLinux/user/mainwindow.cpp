@@ -151,7 +151,7 @@ void SkNlThread::run()
     QObject::connect(this, SIGNAL(setKernelModuleState(unsigned short)), mainW, SLOT(setKernelModuleState(unsigned short)));
 
     emit log("SkNlThread: all signals connected\n");
-    system("insmod ../kernel/module_5410.ko");
+    system("insmod ../../kernel/module_5410.ko");
     /*start netlink socket*/
     ret = initNetlinkSocket();
     if(ret == -1)

@@ -25,11 +25,13 @@ typedef struct
 
 typedef struct
 {
-    T_SCHEDULER_QUEUE queue[NUM_OF_ETHERNET_PRIORITY_CLASSES];
-    wait_queue_head_t waitEthernetSchedulerQueue;
+    T_SCHEDULER_QUEUE   queue[NUM_OF_ETHERNET_PRIORITY_CLASSES];
+    wait_queue_head_t   waitEthernetSchedulerQueue;
+    int                 waitEthernetSchedulerQueueFlag;
     struct hrtimer      transmitWakeUpHrTimer;
     ktime_t             transmitWakeUpAbsKtime;
-    wait_queue_head_t waitEthernetTransmitQueue;
+    wait_queue_head_t   waitEthernetTransmitQueue;
+    int                 waitEthernetTransmitQueueFlag;
 } T_SCHEDULER_QUEUE_CB;
 
 typedef int (*T_SCHEDULER_ENQUEUEFNCPTR)(struct sk_buff *skb);

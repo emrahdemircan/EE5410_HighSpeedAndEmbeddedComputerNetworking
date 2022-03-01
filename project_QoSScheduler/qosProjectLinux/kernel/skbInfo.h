@@ -30,9 +30,9 @@ saklamasi icin kullaniyoruz. 48 bytelik alanin asagidaki struct
 tipine cast edilmesi ile cesitli degerler tasinacak.*/
 typedef struct /*Dikkat en fazla 48 byte olacak!*/
 {	
-	T_MESSAGE_TYPE	msgType;
-	unsigned char	priority;
-        struct timespec timeStamp;
+    T_MESSAGE_TYPE	msgType;
+    unsigned char	priority;
+    struct timespec timeStamp;
 }T_SKBUFFCB_INFO;
 
 #define SKB_INJECT	0xab

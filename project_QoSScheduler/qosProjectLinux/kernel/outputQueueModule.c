@@ -53,7 +53,7 @@ static void printSystemRelatedInfo(void)
     LOG_INFO((logInfoBuf,": sizeof(unsigned short int):%d\n",sizeof(unsigned short int)))
     LOG_INFO((logInfoBuf,": BITS_PER_LONG:%d\n",sizeof(BITS_PER_LONG)))
     LOG_INFO((logInfoBuf,": sizeof(ktime_t):%d\n",sizeof(t)))
-    LOG_INFO((logInfoBuf,": sizeof(ktime_t):%d\n",sizeof(t.tv64)))
+    //LOG_INFO((logInfoBuf,": sizeof(ktime_t):%d\n",sizeof(t.tv64)))
 
 }/*printSystemRelatedInfo*/
 

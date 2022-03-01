@@ -101,12 +101,12 @@ static T_DEFICIT_TABLE_CB dTableCb;
 /********************************/
 static void startEthernetSchedulerWakeUpHrTimer(void)
 {
-        LOG_INFO((logInfoBuf,"\n"))
-        ethernetSchedulerThread.wakeUpAbsKtime = ktime_set(0,WAKEUPTIMER_NSEC/1000);
-        hrtimer_init(&ethernetSchedulerThread.wakeUpHrTimer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
-        ethernetSchedulerThread.wakeUpHrTimer.function = &ethernetSchedulerWakeUpHrTimerCallback;
-        LOG_INFO((logInfoBuf,"starting wakeUpHrTimer.\n"))
-        hrtimer_start(&ethernetSchedulerThread.wakeUpHrTimer, ethernetSchedulerThread.wakeUpAbsKtime, HRTIMER_MODE_REL);
+    LOG_INFO((logInfoBuf,"\n"))
+    ethernetSchedulerThread.wakeUpAbsKtime = ktime_set(0,WAKEUPTIMER_NSEC/1000);
+    hrtimer_init(&ethernetSchedulerThread.wakeUpHrTimer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
+    ethernetSchedulerThread.wakeUpHrTimer.function = &ethernetSchedulerWakeUpHrTimerCallback;
+    LOG_INFO((logInfoBuf,"starting wakeUpHrTimer.\n"))
+    hrtimer_start(&ethernetSchedulerThread.wakeUpHrTimer, ethernetSchedulerThread.wakeUpAbsKtime, HRTIMER_MODE_REL);
 }/*startEthernetSchedulerWakeUpHrTimer*/
 
 /********************************/
@@ -114,8 +114,8 @@ static void startEthernetSchedulerWakeUpHrTimer(void)
 /********************************/
 static void stopEthernetSchedulerWakeUpHrTimer(void)
 {
-        LOG_INFO((logInfoBuf,"\n"))
-        hrtimer_cancel(&ethernetSchedulerThread.wakeUpHrTimer);
+    LOG_INFO((logInfoBuf,"\n"))
+    hrtimer_cancel(&ethernetSchedulerThread.wakeUpHrTimer);
 }/*stopEthernetSchedulerWakeUpHrTimer*/
 
 /********************************/
@@ -123,9 +123,10 @@ static void stopEthernetSchedulerWakeUpHrTimer(void)
 /********************************/
 static enum hrtimer_restart ethernetSchedulerWakeUpHrTimerCallback(struct hrtimer *timer)
 {
-        hrtimer_forward_now(timer,ethernetSchedulerThread.wakeUpAbsKtime);
-        wake_up_interruptible(&schedulerCb.waitEthernetSchedulerQueue);
-        return HRTIMER_RESTART;
+    hrtimer_forward_now(timer,ethernetSchedulerThread.wakeUpAbsKtime);
+    schedulerCb.waitEthernetSchedulerQueueFlag = 1;
+    wake_up_interruptible(&schedulerCb.waitEthernetSchedulerQueue);
+    return HRTIMER_RESTART;
 }/*ethernetSchedulerWakeUpHrTimerCallback*/
 
 /********************************/
@@ -133,16 +134,17 @@ static enum hrtimer_restart ethernetSchedulerWakeUpHrTimerCallback(struct hrtime
 /********************************/
 static void startEthernetTransmitWakeUpHrTimer(unsigned int linkRateInMBits)
 {
-        unsigned int timeoutValue;
-        LOG_INFO((logInfoBuf,"linkRate:%d MBits/sec\n",linkRateInMBits))
-        timeoutValue = (ONEMBIT_ONEBYTE_TRANSMIT_WAKEUPTIMER_NSEC*TRANSMISSION_WAIT_UNIT_LENGTH_IN_BITS)/linkRateInMBits;
-        timeoutValue = timeoutValue/14; /*this is a refactoring division by inspecting cpu performance*/
-        schedulerCb.transmitWakeUpAbsKtime = ktime_set(0,timeoutValue);
-        LOG_INFO((logInfoBuf,"timeoutValue:%d nsecs\n",timeoutValue))
-        hrtimer_init(&schedulerCb.transmitWakeUpHrTimer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
-        schedulerCb.transmitWakeUpHrTimer.function = &ethernetTransmitWakeUpHrTimerCallback;
-        LOG_INFO((logInfoBuf,"starting wakeUpHrTimer.\n"))
-        hrtimer_start(&schedulerCb.transmitWakeUpHrTimer, schedulerCb.transmitWakeUpAbsKtime, HRTIMER_MODE_REL);
+    unsigned int timeoutValue;
+
+    LOG_INFO((logInfoBuf,"linkRate:%d MBits/sec\n",linkRateInMBits))
+    timeoutValue = (ONEMBIT_ONEBYTE_TRANSMIT_WAKEUPTIMER_NSEC*TRANSMISSION_WAIT_UNIT_LENGTH_IN_BITS)/linkRateInMBits;
+    timeoutValue = timeoutValue/14; /*this is a refactoring division by inspecting cpu performance*/
+    schedulerCb.transmitWakeUpAbsKtime = ktime_set(0,timeoutValue);
+    LOG_INFO((logInfoBuf,"timeoutValue:%d nsecs\n",timeoutValue))
+    hrtimer_init(&schedulerCb.transmitWakeUpHrTimer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
+    schedulerCb.transmitWakeUpHrTimer.function = &ethernetTransmitWakeUpHrTimerCallback;
+    LOG_INFO((logInfoBuf,"starting wakeUpHrTimer.\n"))
+    hrtimer_start(&schedulerCb.transmitWakeUpHrTimer, schedulerCb.transmitWakeUpAbsKtime, HRTIMER_MODE_REL);
 }/*startEthernetTransmitWakeUpHrTimer*/
 
 /********************************/
@@ -150,8 +152,8 @@ static void startEthernetTransmitWakeUpHrTimer(unsigned int linkRateInMBits)
 /********************************/
 static void stopEthernetTransmitWakeUpHrTimer(void)
 {
-        LOG_INFO((logInfoBuf,"\n"))
-        hrtimer_cancel(&schedulerCb.transmitWakeUpHrTimer);
+    LOG_INFO((logInfoBuf,"\n"))
+    hrtimer_cancel(&schedulerCb.transmitWakeUpHrTimer);
 }/*stopEthernetTransmitWakeUpHrTimer*/
 
 /********************************/
@@ -159,9 +161,10 @@ static void stopEthernetTransmitWakeUpHrTimer(void)
 /********************************/
 static enum hrtimer_restart ethernetTransmitWakeUpHrTimerCallback(struct hrtimer *timer)
 {
-        hrtimer_forward_now(timer,schedulerCb.transmitWakeUpAbsKtime);
-        wake_up_interruptible(&schedulerCb.waitEthernetTransmitQueue);
-        return HRTIMER_RESTART;
+    hrtimer_forward_now(timer,schedulerCb.transmitWakeUpAbsKtime);
+    schedulerCb.waitEthernetTransmitQueueFlag = 1;
+    wake_up_interruptible(&schedulerCb.waitEthernetTransmitQueue);
+    return HRTIMER_RESTART;
 }/*ethernetTransmitWakeUpHrTimerCallback*/
 
 /********************************/
@@ -174,6 +177,7 @@ int tailEthernetSchedulerQueue_MSG_ETHPACK(struct sk_buff *skb)
     setSkbTimeStamp(skb);
     /* enqueue the packet!*/
     qosSchedulerEnqueue(skb);
+    schedulerCb.waitEthernetSchedulerQueueFlag = 1;
     wake_up_interruptible(&schedulerCb.waitEthernetSchedulerQueue);
     return 1;
 }/*tailEthernetSchedulerQueue_MSG_ETHPACK*/
@@ -183,26 +187,30 @@ int tailEthernetSchedulerQueue_MSG_ETHPACK(struct sk_buff *skb)
 /********************************/
 int initEthernetSchedulerThread(void)
 {
-        /*initialize and start initEthernetSchedulerThread*/
-        if(ethernetSchedulerThread_running == 1)
-        {
-                LOG_INFO((logInfoBuf,"already running.\n"))
-                return -1;
-        }
-        LOG_INFO((logInfoBuf,"initializing:\n"))
-        memset(&ethernetSchedulerThread, 0, sizeof(T_KTHREAD));
-        ethernetSchedulerThread.thread = kthread_run((void *)ethernetSchedulerThreadRoutine, &ethernetSchedulerThread,ETHERNETSCHEDULER_THREAD_NAME);
-        if (IS_ERR(ethernetSchedulerThread.thread))
-        {
-                LOG_INFO((logInfoBuf,"unable to start.\n"))
-                return 0;
-        }
-        while (ethernetSchedulerThread_running != 1)
-        {
-                msleep(10);
-                THREAD_YIELD
-        }
-        return 1;
+    /*initialize and start initEthernetSchedulerThread*/
+    if(ethernetSchedulerThread_running == 1)
+    {
+        LOG_INFO((logInfoBuf,"already running.\n"))
+        return -1;
+    }
+
+    /* start thread */
+    LOG_INFO((logInfoBuf,"initializing:\n"))
+    memset(&ethernetSchedulerThread, 0, sizeof(T_KTHREAD));
+    ethernetSchedulerThread.thread = kthread_run((void *)ethernetSchedulerThreadRoutine, &ethernetSchedulerThread,ETHERNETSCHEDULER_THREAD_NAME);
+    if(IS_ERR(ethernetSchedulerThread.thread))
+    {
+        LOG_INFO((logInfoBuf,"unable to start.\n"))
+        return 0;
+    }
+
+    /* wait until thread start by checking thread running flag */
+    while(ethernetSchedulerThread_running != 1)
+    {
+        msleep(10);
+        THREAD_YIELD
+    }
+    return 1;
 }/*initEthernetSchedulerThread*/
 
 /********************************/
@@ -210,36 +218,42 @@ int initEthernetSchedulerThread(void)
 /********************************/
 int killEthernetSchedulerThread(void)
 {
-        int err;
+    struct pid* pidPtr;
+    int err;
 
-        /*stop killEthernetSchedulerThreadRoutine*/
-        if(ethernetSchedulerThread_running != 1)
-        {
-                LOG_INFO((logInfoBuf,"already not running.\n"))
-                return -1;
-        }
+    /*stop killEthernetSchedulerThreadRoutine*/
+    if(ethernetSchedulerThread_running != 1)
+    {
+        LOG_INFO((logInfoBuf,"already not running.\n"))
+        return -1;
+    }
 
-        LOG_INFO((logInfoBuf,"stopping...\n"))
-        lock_kernel();
-        err = kill_pid(ethernetSchedulerThread.thread->pids[PIDTYPE_PID].pid, SIGKILL, 1);
-        unlock_kernel();
-        /*oldurmek istedigimiz thread waitQueue'da duruyor olabilir. Uyandiralim ki SIG_KILL'i islesin*/
-        wake_up_interruptible(&schedulerCb.waitEthernetSchedulerQueue);
-        if (err < 0)
+    LOG_INFO((logInfoBuf,"stopping...\n"))
+    LOCK_KERNEL();
+    pidPtr = task_pid(ethernetSchedulerThread.thread);
+    err = kill_pid(pidPtr, SIGKILL, 1);
+    UNLOCK_KERNEL();
+    /* wakeup thread to process SIGKILL */
+    schedulerCb.waitEthernetSchedulerQueueFlag = 1;
+    wake_up_interruptible(&schedulerCb.waitEthernetSchedulerQueue);
+    /* check if kill_pid succeeded */
+    if(err < 0)
+    {
+        LOG_INFO((logInfoBuf,"unknown error %d while terminating.\n",err))
+        return 0;
+    }
+    else
+    {
+        /* kill_pid succeeded, wait for thread exit by checking thread running flag */
+        while(ethernetSchedulerThread_running == 1)
         {
-                LOG_INFO((logInfoBuf,"unknown error %d while terminating.\n",err))
-                return 0;
+            LOG_INFO((logInfoBuf,"waiting...\n"))
+            msleep(1000);
+            THREAD_YIELD
         }
-        else
-        {
-                while (ethernetSchedulerThread_running == 1)
-                {
-                        msleep(10);
-                        THREAD_YIELD
-                }
-                LOG_INFO((logInfoBuf,"succesfully killed.\n"))
-        }
-        return 1;
+        LOG_INFO((logInfoBuf,"succesfully killed.\n"))
+    }
+    return 1;
 }/*killEthernetSchedulerThread*/
 
 /********************************/
@@ -247,120 +261,121 @@ int killEthernetSchedulerThread(void)
 /********************************/
 static void ethernetSchedulerThreadRoutine(T_KTHREAD* wThread)
 {
-        unsigned short i;
+    unsigned short i;
 
-        LOG_INFO((logInfoBuf,"initializing.\n"))
-        /* kernel thread initialization */
-        lock_kernel();
-        current->flags |= PF_NOFREEZE;
-        /* daemonize (take care with signals, after daemonize() they are disabled) */
-        daemonize(MODULE_NAME);
-        allow_signal(SIGKILL);
-        unlock_kernel();
+    LOG_INFO((logInfoBuf,"initializing.\n"))
+    /* kernel thread initialization */
+    LOCK_KERNEL();
+    current->flags |= PF_NOFREEZE;
+    /*daemonize(MODULE_NAME);*/
+    allow_signal(SIGKILL);
+    UNLOCK_KERNEL();
 
-        /*initialize the scheduler queues*/
-        for(i=0; i<NUM_OF_ETHERNET_PRIORITY_CLASSES; i++)
+    /*initialize the scheduler queues*/
+    for(i=0; i<NUM_OF_ETHERNET_PRIORITY_CLASSES; i++)
+    {
+        LOG_INFO((logInfoBuf,"initializing queue[%d].qHead\n",i))
+        skb_queue_head_init(&schedulerCb.queue[i].qHead);
+        schedulerCb.queue[i].size = schedulerQueueLengthInBytes;
+        schedulerCb.queue[i].currentSize = 0;
+    }
+
+    /*initialize schedulerCb.waitEthernetSchedulerQueue*/
+    LOG_INFO((logInfoBuf,"initializing schedulerCb.waitEthernetSchedulerQueue.\n"))
+    init_waitqueue_head(&schedulerCb.waitEthernetSchedulerQueue);
+    schedulerCb.waitEthernetSchedulerQueueFlag = 0;
+
+    /*initialize schedulerCb.waitEthernetTransmitQueue*/
+    LOG_INFO((logInfoBuf,"initializing schedulerCb.waitEthernetTransmitQueue.\n"))
+    schedulerCb.waitEthernetTransmitQueueFlag = 0;
+    init_waitqueue_head(&schedulerCb.waitEthernetTransmitQueue);
+
+    /*initialize the schedulers array*/
+    LOG_INFO((logInfoBuf,"initializing scheduler functions list.\n"))
+
+    /*initialize the selected scheduler*/
+    switch(currentScheduler)
+    {
+        case FIFO:
+            LOG_INFO((logInfoBuf,"currentScheduler: FIFO \n"))
+            initFifo();
+            schedulerCb.queue[DEFAULT_FIFO_QUEUE].size = NUM_OF_ETHERNET_PRIORITY_CLASSES*schedulerQueueLengthInBytes;
+            qosSchedulerEnqueue = fifoSchedulerEnqueue;
+            qosSchedulerDequeue = fifoSchedulerDequeue;
+        break;
+        case ROUND_ROBIN:
+            LOG_INFO((logInfoBuf,"currentScheduler: ROUND_ROBIN \n"))
+            initRoundRobin();
+            qosSchedulerEnqueue = roundRobinSchedulerEnqueue;
+            qosSchedulerDequeue = roundRobinSchedulerDequeue;
+        break;
+        case WEIGHTED_ROUND_ROBIN:
+            LOG_INFO((logInfoBuf,"currentScheduler: WEIGHTED_ROUND_ROBIN \n"))
+            initWeightedRoundRobin();
+            qosSchedulerEnqueue = weightedRoundRobinSchedulerEnqueue;
+            qosSchedulerDequeue = weightedRoundRobinSchedulerDequeue;
+        break;
+        case DEFICIT_ROUND_ROBIN:
+            LOG_INFO((logInfoBuf,"currentScheduler: DEFICIT_ROUND_ROBIN \n"))
+            initDeficitRoundRobin();
+            qosSchedulerEnqueue = deficitRoundRobinSchedulerEnqueue;
+            qosSchedulerDequeue = deficitRoundRobinSchedulerDequeue;
+        break;
+        case WF2Q:
+            LOG_INFO((logInfoBuf,"currentScheduler: WF2Q \n"))
+            initWf2q();
+            qosSchedulerEnqueue = wf2qSchedulerEnqueue;
+            qosSchedulerDequeue = wf2qSchedulerDequeue;
+        break;
+        case DTABLE:
+            LOG_INFO((logInfoBuf,"currentScheduler: DTABLE \n"))
+            initDTable();
+            qosSchedulerEnqueue = dTableSchedulerEnqueue;
+            qosSchedulerDequeue = dTableSchedulerDequeue;
+        break;
+        default:
+            LOG_INFO((logInfoBuf,"currentScheduler: %d HATA!",currentScheduler))
+            return;
+        break;
+    }
+
+    /*initialize and start scheduler wake up hr timer...*/
+    startEthernetSchedulerWakeUpHrTimer();
+
+    /*initialize and start transmit wake up hr timer...*/
+    startEthernetTransmitWakeUpHrTimer(schedulerEggressLinkRateInMBits);
+
+    LOG_INFO((logInfoBuf,"initialized.\n"))
+    ethernetSchedulerThread_running = 1;
+    /* let task sleep for backLogTimeInMsecs duration to backlog packets to be scheduled.*/
+    msleep(backLogTimeInMsecs);/**/
+    /*enter the loop for scheduling*/
+    while(1)
+    {
+        if(signal_pending(current))
         {
-            LOG_INFO((logInfoBuf,"initializing queue[%d].qHead\n",i))
-            skb_queue_head_init(&schedulerCb.queue[i].qHead);
-            schedulerCb.queue[i].size = schedulerQueueLengthInBytes;
-            schedulerCb.queue[i].currentSize = 0;
-        }
-
-        /*initialize schedulerCb.waitEthernetSchedulerQueue*/
-        LOG_INFO((logInfoBuf,"initializing schedulerCb.waitEthernetSchedulerQueue.\n"))
-        init_waitqueue_head(&schedulerCb.waitEthernetSchedulerQueue);
-
-        /*initialize schedulerCb.waitEthernetTransmitQueue*/
-        LOG_INFO((logInfoBuf,"initializing schedulerCb.waitEthernetTransmitQueue.\n"))
-        init_waitqueue_head(&schedulerCb.waitEthernetTransmitQueue);
-
-        /*initialize the schedulers array*/
-        LOG_INFO((logInfoBuf,"initializing scheduler functions list.\n"))
-
-        /*initialize the selected scheduler*/
-        switch(currentScheduler)
-        {
-            case FIFO:
-                LOG_INFO((logInfoBuf,"currentScheduler: FIFO \n"))
-                initFifo();
-                schedulerCb.queue[DEFAULT_FIFO_QUEUE].size = NUM_OF_ETHERNET_PRIORITY_CLASSES*schedulerQueueLengthInBytes;
-                qosSchedulerEnqueue = fifoSchedulerEnqueue;
-                qosSchedulerDequeue = fifoSchedulerDequeue;
-            break;
-            case ROUND_ROBIN:
-                LOG_INFO((logInfoBuf,"currentScheduler: ROUND_ROBIN \n"))
-                initRoundRobin();
-                qosSchedulerEnqueue = roundRobinSchedulerEnqueue;
-                qosSchedulerDequeue = roundRobinSchedulerDequeue;
-            break;
-            case WEIGHTED_ROUND_ROBIN:
-                LOG_INFO((logInfoBuf,"currentScheduler: WEIGHTED_ROUND_ROBIN \n"))
-                initWeightedRoundRobin();
-                qosSchedulerEnqueue = weightedRoundRobinSchedulerEnqueue;
-                qosSchedulerDequeue = weightedRoundRobinSchedulerDequeue;
-            break;
-            case DEFICIT_ROUND_ROBIN:
-                LOG_INFO((logInfoBuf,"currentScheduler: DEFICIT_ROUND_ROBIN \n"))
-                initDeficitRoundRobin();
-                qosSchedulerEnqueue = deficitRoundRobinSchedulerEnqueue;
-                qosSchedulerDequeue = deficitRoundRobinSchedulerDequeue;
-            break;
-            case WF2Q:
-                LOG_INFO((logInfoBuf,"currentScheduler: WF2Q \n"))
-                initWf2q();
-                qosSchedulerEnqueue = wf2qSchedulerEnqueue;
-                qosSchedulerDequeue = wf2qSchedulerDequeue;
-            break;
-            case DTABLE:
-                LOG_INFO((logInfoBuf,"currentScheduler: DTABLE \n"))
-                initDTable();
-                qosSchedulerEnqueue = dTableSchedulerEnqueue;
-                qosSchedulerDequeue = dTableSchedulerDequeue;
-            break;
-            default:
-                LOG_INFO((logInfoBuf,"currentScheduler: %d HATA!",currentScheduler))
-                return;
             break;
         }
+        qosSchedulerDequeue();
+        THREAD_YIELD
+    }
 
-        /*initialize and start scheduler wake up hr timer...*/
-        startEthernetSchedulerWakeUpHrTimer();
+    /*stop scheduler wake up hr timer...*/
+    stopEthernetSchedulerWakeUpHrTimer();
 
-        /*initialize and start transmit wake up hr timer...*/
-        startEthernetTransmitWakeUpHrTimer(schedulerEggressLinkRateInMBits);
+    /*stop transmit wake up hr timer...*/
+    stopEthernetTransmitWakeUpHrTimer();
 
-        LOG_INFO((logInfoBuf,"initialized.\n"))
-        ethernetSchedulerThread_running = 1;
-        /* let task sleep for backLogTimeInMsecs duration to backlog packets to be scheduled.*/
-        msleep(backLogTimeInMsecs);/**/
-        /*enter the loop for scheduling*/
-        while(1)
-        {
-            if (signal_pending(current))
-            {
-                    break;
-            }
-            qosSchedulerDequeue();
-            THREAD_YIELD
-        }
+    /*clean the skb queues*/
+    for(i=0; i<NUM_OF_ETHERNET_PRIORITY_CLASSES; i++)
+    {
+        LOG_INFO((logInfoBuf,"skb_queue_purge ->qHead[%d](%d).\n",i,skb_queue_len(&schedulerCb.queue[i].qHead)))
+        skb_queue_purge(&schedulerCb.queue[i].qHead);
+    }
 
-        /*stop scheduler wake up hr timer...*/
-        stopEthernetSchedulerWakeUpHrTimer();
+    LOG_INFO((logInfoBuf,"exiting.\n"))
 
-        /*stop transmit wake up hr timer...*/
-        stopEthernetTransmitWakeUpHrTimer();
-
-        /*clean the skb queues*/
-        for(i=0; i<NUM_OF_ETHERNET_PRIORITY_CLASSES; i++)
-        {
-            LOG_INFO((logInfoBuf,"skb_queue_purge ->qHead[%d](%d).\n",i,skb_queue_len(&schedulerCb.queue[i].qHead)))
-            skb_queue_purge(&schedulerCb.queue[i].qHead);
-        }
-
-        LOG_INFO((logInfoBuf,"exiting.\n"))
-
-        ethernetSchedulerThread_running = 0;
+    ethernetSchedulerThread_running = 0;
 
 }/*ethernetSchedulerThreadRoutine*/
 
@@ -370,6 +385,8 @@ static void ethernetSchedulerThreadRoutine(T_KTHREAD* wThread)
 static int ethernetSchedulerThreadHandler_MSG_ETHPACK(struct sk_buff *skb, unsigned short qNumber)
 {
     short packetLengthInBytes;
+    DEFINE_WAIT(wait);
+
     outputQueueModuleCb.stats.ethernetSch.dataProcessed++;
     if(skb->dev == NULL)
     {
@@ -381,11 +398,13 @@ static int ethernetSchedulerThreadHandler_MSG_ETHPACK(struct sk_buff *skb, unsig
     while( packetLengthInBytes > 0)
     {
         /*sleep until someone wakes up!*/
-        interruptible_sleep_on(&schedulerCb.waitEthernetTransmitQueue);
+        wait_event_interruptible(schedulerCb.waitEthernetTransmitQueue, schedulerCb.waitEthernetTransmitQueueFlag != 0 );
+        schedulerCb.waitEthernetTransmitQueueFlag = 0;
         packetLengthInBytes-=TRANSMISSION_WAIT_UNIT_LENGTH_IN_BYTES;
     }
     /*sleep until someone wakes up!*/
-    interruptible_sleep_on(&schedulerCb.waitEthernetTransmitQueue);
+    wait_event_interruptible(schedulerCb.waitEthernetTransmitQueue, schedulerCb.waitEthernetTransmitQueueFlag != 0 );
+    schedulerCb.waitEthernetTransmitQueueFlag = 0;
     /*send this ethernet packet to the corresponding kernel thread.*/
     tailEthernetSenderQueue_MSG_ETHPACK(skb);
     /* set the statistics*/
@@ -595,8 +614,6 @@ static void fifoSchedulerDequeue(void)
 {
     struct sk_buff *skb;
 
-    /*sleep until someone wakes up!*/
-    /*interruptible_sleep_on(&schedulerCb.waitEthernetSchedulerQueue);*/
     /*go through the FIFO queue to pick messages*/
     if( (skb = skb_dequeue(fifoCb.queue) ) != NULL )
     {
@@ -654,8 +671,6 @@ static void roundRobinSchedulerDequeue(void)
     struct sk_buff *skb;
     unsigned short i;
 
-    /*sleep until someone wakes up!*/
-    /*interruptible_sleep_on(&schedulerCb.waitEthernetSchedulerQueue);*/
     /*go through the weighted round robin queue to pick messages from differen ethernet queues*/
     for(i=0; i<ROUNDROBIN_SCHEDULERQUEUE_LEN; i++)
     {
@@ -727,8 +742,6 @@ static void weightedRoundRobinSchedulerDequeue(void)
     unsigned short i;
     unsigned char priority;
 
-    /*sleep until someone wakes up!*/
-    /*interruptible_sleep_on(&schedulerCb.waitEthernetSchedulerQueue);*/
     /*go through the weighted round robin queue to pick messages from differen ethernet queues*/
     for(i=0; i<WEIGHTED_ROUNDROBIN_SCHEDULERQUEUE_LEN; i++)
     {
@@ -795,9 +808,7 @@ static void deficitRoundRobinSchedulerDequeue(void)
     unsigned short i;
     unsigned char priority;
 
-    /*sleep until someone wakes up!*/
-    /*interruptible_sleep_on(&schedulerCb.waitEthernetSchedulerQueue);*/
-    /*go through the weighted round robin queue to pick messages from differen ethernet queues*/
+    /*go through the weighted round robin queue to pick messages from different ethernet queues*/
     for(i=0; i<DEFICIT_ROUNDROBIN_NUMBEROFFLOWS; i++)
     {
         /*get the pointer to the first skb on the list but don't remove it'*/
@@ -906,7 +917,7 @@ static int wf2qSchedulerEnqueue(struct sk_buff *skb)
     for(i=0; i<WF2Q_NUMBEROFFLOWS; i++)
     {
         /* look if a packet exists in the flow, if not continue to the other flow */
-        if ( 0 != skb_queue_len(wf2qCb.flow[i].queue) )
+        if( 0 != skb_queue_len(wf2qCb.flow[i].queue) )
         {
             if( wf2qCb.flow[i].startTime < minStartTime )
             {
@@ -935,8 +946,6 @@ static void wf2qSchedulerDequeue(void)
     int selectedFlow;
     unsigned int weightSum;
 
-    /*sleep until someone wakes up!*/
-    /*interruptible_sleep_on(&schedulerCb.waitEthernetSchedulerQueue);*/
     /* go through the WF2Q flows to pick messages from different queues */
     /* the flow with the smallest finish time will be used for transmission */
     minFinishTime = 0xFFFFFFFF;
@@ -944,7 +953,7 @@ static void wf2qSchedulerDequeue(void)
     for(i=0; i<WF2Q_NUMBEROFFLOWS; i++)
     {
         /* look if a packet exists in the flow, if not continue to the other flow */
-        if ( 0 == skb_queue_len(wf2qCb.flow[i].queue) )
+        if( 0 == skb_queue_len(wf2qCb.flow[i].queue) )
         {
             continue;
         }
@@ -993,7 +1002,7 @@ static void wf2qSchedulerDequeue(void)
     {
         weightSum += wf2qCb.flow[i].weight;
         /* look if a packet exists in the flow, if not continue to the other flow */
-        if ( 0 != skb_queue_len(wf2qCb.flow[i].queue) )
+        if( 0 != skb_queue_len(wf2qCb.flow[i].queue) )
         {
             if( wf2qCb.flow[i].startTime < minStartTime )
             {
@@ -1080,8 +1089,6 @@ static void dTableSchedulerDequeue(void)
     unsigned short i;
     unsigned char priority;
 
-    /*sleep until someone wakes up!*/
-    /*interruptible_sleep_on(&schedulerCb.waitEthernetSchedulerQueue);*/
     /*go through the weighted round robin queue to pick messages from differen ethernet queues*/
     for(i=0; i<DEFICIT_TABLE_SIZE; i++)
     {

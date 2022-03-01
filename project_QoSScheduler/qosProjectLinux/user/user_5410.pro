@@ -2,7 +2,7 @@
 # Project created by QtCreator 2011-01-05T09:06:12
 # -------------------------------------------------
 QT += core \
-    gui
+    widgets
 TARGET = user_5410
 TEMPLATE = app
 INCLUDEPATH += ../kernel/

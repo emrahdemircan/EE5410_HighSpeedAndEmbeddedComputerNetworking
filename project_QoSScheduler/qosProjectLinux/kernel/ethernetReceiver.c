@@ -33,12 +33,13 @@ static int ethernetReceiverThreadHandler_MSG_IPC(struct sk_buff *skb);
 /* GLOBALS */
 /********************************************************************************/
 /*thread structures*/
-static T_KTHREAD ethernetReceiverThread;
-static int ethernetReceiverThread_running = 0;
-static struct net_device *inputDevice;
-static struct packet_type packetType_ETH_P_ALL;
+static T_KTHREAD           ethernetReceiverThread;
+static int                 ethernetReceiverThread_running = 0;
+static struct net_device*  inputDevice;
+static struct packet_type  packetType_ETH_P_ALL;
 static struct sk_buff_head ethernetReceiverQueue;
-static wait_queue_head_t waitEthernetReceiverQueue;
+static wait_queue_head_t   waitEthernetReceiverQueue;
+static int                 waitEthernetReceiverQueueFlag = 0;
 
 /********************************************************************************/
 /* EXTERNS */
@@ -76,6 +77,7 @@ static void stopEthernetReceiverWakeUpHrTimer(void)
 static enum hrtimer_restart ethernetReceiverWakeUpHrTimerCallback(struct hrtimer *timer)
 {
 	hrtimer_forward_now(timer,ethernetReceiverThread.wakeUpAbsKtime);
+    waitEthernetReceiverQueueFlag = 1;
 	wake_up_interruptible(&waitEthernetReceiverQueue);
 	return HRTIMER_RESTART;
 }/*ethernetReceiverWakeUpHrTimerCallback*/
@@ -97,6 +99,7 @@ int tailEthernetReceiverQueue_MSG_ETHPACK(struct sk_buff *skb, unsigned short et
     setSkbPriority(skb,determinePriority(ethType));
     skb_queue_tail(&ethernetReceiverQueue, skb);
     outputQueueModuleCb.stats.ethernetRx.queued++;
+    waitEthernetReceiverQueueFlag = 1;
     wake_up_interruptible(&waitEthernetReceiverQueue);
     return 1;
 }/*tailEthernetReceiverQueue_MSG_ETHPACK*/
@@ -116,6 +119,7 @@ int tailEthernetReceiverQueue_MSG_IPC(struct sk_buff *skb)
     setSkbMsgType(skb,MSG_IPC);
     skb_queue_tail(&ethernetReceiverQueue, skb);
     outputQueueModuleCb.stats.ethernetRx.queued++;
+    waitEthernetReceiverQueueFlag = 1;
     wake_up_interruptible(&waitEthernetReceiverQueue);
     return 1;
 }/*tailEthernetReceiverQueue_MSG_IPC*/
@@ -131,15 +135,19 @@ int initEthernetReceiverThread(void)
 		LOG_INFO((logInfoBuf,"already running.\n"))
 		return -1;
 	}
-	LOG_INFO((logInfoBuf,"initializing\n"))
-	memset(&ethernetReceiverThread, 0, sizeof(T_KTHREAD));
-        ethernetReceiverThread.thread = kthread_run((void *)ethernetReceiverThreadRoutine, &ethernetReceiverThread,ETHERNETRECEIVER_THREAD_NAME);
-	if (IS_ERR(ethernetReceiverThread.thread)) 
+
+    /* start thread */
+    LOG_INFO((logInfoBuf,"initializing:\n"))
+    memset(&ethernetReceiverThread, 0, sizeof(T_KTHREAD));
+    ethernetReceiverThread.thread = kthread_run((void *)ethernetReceiverThreadRoutine, &ethernetReceiverThread,ETHERNETRECEIVER_THREAD_NAME);
+    if(IS_ERR(ethernetReceiverThread.thread))
 	{
 		LOG_INFO((logInfoBuf,"unable to start.\n"))
 		return 0;
 	}
-	while (ethernetReceiverThread_running != 1)
+
+    /* wait until thread start by checking thread running flag */
+    while(ethernetReceiverThread_running != 1)
 	{
 		msleep(10);
 		THREAD_YIELD
@@ -152,7 +160,8 @@ int initEthernetReceiverThread(void)
 /********************************/
 int killEthernetReceiverThread(void)
 {
-	int err;
+    struct pid* pidPtr;
+    int err;
 
 	/*stop killEthernetReceiverThreadRoutine*/
 	if(ethernetReceiverThread_running != 1)
@@ -162,22 +171,27 @@ int killEthernetReceiverThread(void)
 	}
 
 	LOG_INFO((logInfoBuf,"stopping...\n"))
-	lock_kernel();
-	err = kill_pid(ethernetReceiverThread.thread->pids[PIDTYPE_PID].pid, SIGKILL, 1);
-	unlock_kernel();
-	/*oldurmek istedigimiz thread waitQueue'da duruyor olabilir. Uyandiralim ki SIG_KILL'i islesin*/
+    LOCK_KERNEL();
+    pidPtr = task_pid(ethernetReceiverThread.thread);
+    err = kill_pid(pidPtr, SIGKILL, 1);
+    UNLOCK_KERNEL();
+    /* wakeup thread to process SIGKILL */
+    waitEthernetReceiverQueueFlag = 1;
 	wake_up_interruptible(&waitEthernetReceiverQueue);
-	if (err < 0)
+    /* check if kill_pid succeeded */
+    if(err < 0)
 	{
 		LOG_INFO((logInfoBuf,"unknown error %d while terminating.\n",err))
 		return 0;
 	}
 	else 
 	{
-		while (ethernetReceiverThread_running == 1)
+        /* kill_pid succeeded, wait for thread exit by checking thread running flag */
+        while(ethernetReceiverThread_running == 1)
 		{
-			msleep(10);
-			THREAD_YIELD
+            LOG_INFO((logInfoBuf,"waiting...\n"))
+            msleep(1000);
+            THREAD_YIELD
 		}
 		LOG_INFO((logInfoBuf,"succesfully killed.\n"))
 	}
@@ -209,19 +223,19 @@ static int rawEtherPackHandler(struct sk_buff *skb, struct net_device *dev, stru
 	/* access to the ethernet header and proceed according to the the ether type */
 	eh  = (struct ethhdr*)skb_mac_header(skb);
 	ethType = ntohs(eh->h_proto);
-        /* only the ethernet packets with type similar to ETHERTYPE_TOBESTOLEN are processed further in this module*/
-        if( (ethType>=ETHERTYPE_TOBESTOLEN_BEGIN) && (ethType<=ETHERTYPE_TOBESTOLEN_END) )
+    /* only the ethernet packets with type similar to ETHERTYPE_TOBESTOLEN are processed further in this module*/
+    if( (ethType>=ETHERTYPE_TOBESTOLEN_BEGIN) && (ethType<=ETHERTYPE_TOBESTOLEN_END) )
 	{
 		/*write skb to ethernet receive queue and wake ethernetReceiverThread up*/
 		tailEthernetReceiverQueue_MSG_ETHPACK(skb,ethType);
                 return NET_RX_DROP;
 	}
 	/* kfree_skb is used just to decrement the usage count of the kernel buffer until end of life. */
-        kfree_skb(skb);
-        /* as this callback is registered by ETH_P_ALL, return type does not matter actually. */
-        /* Linux kernel will pass this packet to other specific handlers registered, thus returning */
-        /* NET_RX_DROP does not make sense! */
-        return NET_RX_SUCCESS;
+    kfree_skb(skb);
+    /* as this callback is registered by ETH_P_ALL, return type does not matter actually. */
+    /* Linux kernel will pass this packet to other specific handlers registered, thus returning */
+    /* NET_RX_DROP does not make sense! */
+    return NET_RX_SUCCESS;
 }/*rawEtherPackHandler*/
 
 
@@ -231,32 +245,32 @@ static int rawEtherPackHandler(struct sk_buff *skb, struct net_device *dev, stru
 static void ethernetReceiverThreadRoutine(T_KTHREAD* wThread)
 {
 	struct sk_buff *skb;
-	
+    DEFINE_WAIT(wait);
+
 	LOG_INFO((logInfoBuf,"initializing.\n"))
 	/* kernel thread initialization */
-	lock_kernel();
+    LOCK_KERNEL();
 	current->flags |= PF_NOFREEZE;
-	/* daemonize (take care with signals, after daemonize() they are disabled) */
-	daemonize(MODULE_NAME);
-	allow_signal(SIGKILL);
-	unlock_kernel();
+    /*daemonize(MODULE_NAME);*/
+    allow_signal(SIGKILL);
+    UNLOCK_KERNEL();
 
-        /*initialize input device*/
-        LOG_INFO((logInfoBuf,"initializing input device %s.\n",ETHERNET_INPUT_SIDE_NAME))
-        inputDevice = NULL;
-        inputDevice = dev_get_by_name(&init_net,ETHERNET_INPUT_SIDE_NAME);
-        if(inputDevice == NULL)
-        {
-                LOG_INFO((logInfoBuf,"inputDevice = NULL!\n"))
-                return;
-        }
+    /*initialize input device*/
+    LOG_INFO((logInfoBuf,"initializing input device %s.\n",ETHERNET_INPUT_SIDE_NAME))
+    inputDevice = NULL;
+    inputDevice = dev_get_by_name(&init_net,ETHERNET_INPUT_SIDE_NAME);
+    if(inputDevice == NULL)
+    {
+            LOG_INFO((logInfoBuf,"inputDevice = NULL!\n"))
+            return;
+    }
 
 	/*ETH_P_ALL icin kaydolunca gidip gelen tum ethernet paketlerine erisim saglaniyor.*/
 	/*Ozellikle baska bir ETH tipi icin kaydolunca sadece o tipteki gelen paketlere erisim saglaniyor.*/
-        LOG_INFO((logInfoBuf,"dev_add_pack for ETH_P_ALL.\n"))
-        packetType_ETH_P_ALL.type = htons(ETH_P_ALL);
+    LOG_INFO((logInfoBuf,"dev_add_pack for ETH_P_ALL.\n"))
+    packetType_ETH_P_ALL.type = htons(ETH_P_ALL);
 	packetType_ETH_P_ALL.func = rawEtherPackHandler;
-        packetType_ETH_P_ALL.dev = inputDevice;
+    packetType_ETH_P_ALL.dev = inputDevice;
 	dev_add_pack(&packetType_ETH_P_ALL);
 
 	/*initialize the skb queue*/
@@ -265,7 +279,7 @@ static void ethernetReceiverThreadRoutine(T_KTHREAD* wThread)
 	/*initialize waitEthernetReceiverQueue*/
 	LOG_INFO((logInfoBuf,"initializing waitEthernetReceiverQueue.\n"))
 	init_waitqueue_head(&waitEthernetReceiverQueue);
-
+    waitEthernetReceiverQueueFlag = 0;
 	/*initialize and start wake up hr timer...*/
 	startEthernetReceiverWakeUpHrTimer();
 
@@ -274,47 +288,49 @@ static void ethernetReceiverThreadRoutine(T_KTHREAD* wThread)
 	
 	while(1)
 	{
-            if (signal_pending(current))
-            {
-                    break;
-            }
+        if(signal_pending(current))
+        {
+                break;
+        }
 
-            /*sleep until someone wakes up!*/
-            interruptible_sleep_on(&waitEthernetReceiverQueue);
-            while( (skb = skb_dequeue(&ethernetReceiverQueue)) != NULL )
+        /*sleep until someone wakes up!*/
+        wait_event_interruptible(waitEthernetReceiverQueue, waitEthernetReceiverQueueFlag != 0 );
+
+        while( (skb = skb_dequeue(&ethernetReceiverQueue)) != NULL )
+        {
+            outputQueueModuleCb.stats.ethernetRx.dequeued++;
+            switch(getSkbMsgType(skb))
             {
-                outputQueueModuleCb.stats.ethernetRx.dequeued++;
-                switch(getSkbMsgType(skb))
-                {
-                    case MSG_IPC:
-                            ethernetReceiverThreadHandler_MSG_IPC(skb);
-                    break;/*MSG_IPC*/
-                    case MSG_DATA:
-                            ethernetReceiverThreadHandler_MSG_DATA(skb);
-                    break;/*MSG_DATA*/
-                    default:
+                case MSG_IPC:
+                    ethernetReceiverThreadHandler_MSG_IPC(skb);
+                break;/*MSG_IPC*/
+                case MSG_DATA:
+                    ethernetReceiverThreadHandler_MSG_DATA(skb);
+                break;/*MSG_DATA*/
+                default:
                     kfree_skb(skb);
-                    break;
-                }/*switch(getSkbMsgType(skb))*/
-                outputQueueModuleCb.stats.ethernetRx.processed++;
-            }
-            THREAD_YIELD
+                break;
+            }/*switch(getSkbMsgType(skb))*/
+            outputQueueModuleCb.stats.ethernetRx.processed++;
+        }
+        waitEthernetReceiverQueueFlag = 0;
+        THREAD_YIELD
 	}
 
 	/*stop wakeup hr timer...*/
 	stopEthernetReceiverWakeUpHrTimer();
 
 	/*stop ethernet ethernet interfaces...*/
-        LOG_INFO((logInfoBuf,"dev_remove_pack for ETH_P_ALL\n"))
+    LOG_INFO((logInfoBuf,"dev_remove_pack for ETH_P_ALL\n"))
 	dev_remove_pack(&packetType_ETH_P_ALL);
 
 	/*clean the skb queue*/
-        LOG_INFO((logInfoBuf,"skb_queue_purge ->ethernetReceiverQueue(%d).\n",skb_queue_len(&ethernetReceiverQueue)))
+    LOG_INFO((logInfoBuf,"skb_queue_purge ->ethernetReceiverQueue(%d).\n",skb_queue_len(&ethernetReceiverQueue)))
 	skb_queue_purge(&ethernetReceiverQueue);
 
-        /*clean input devices...*/
-        LOG_INFO((logInfoBuf,"removing input device %s.\n",ETHERNET_INPUT_SIDE_NAME))
-        dev_put(inputDevice);
+    /*clean input devices...*/
+    LOG_INFO((logInfoBuf,"removing input device %s.\n",ETHERNET_INPUT_SIDE_NAME))
+    dev_put(inputDevice);
 
 	LOG_INFO((logInfoBuf,"exiting.\n"))
 
@@ -327,6 +343,8 @@ static void ethernetReceiverThreadRoutine(T_KTHREAD* wThread)
 /********************************/
 static int ethernetReceiverThreadHandler_MSG_DATA(struct sk_buff *skb)
 {
+    struct ethhdr *eh;
+
     outputQueueModuleCb.stats.ethernetRx.dataProcessed++;
     if(skb->dev == NULL)
     {
@@ -335,7 +353,8 @@ static int ethernetReceiverThreadHandler_MSG_DATA(struct sk_buff *skb)
     }
     /*the data pointer is shifted left at this point*/
     /* we should fix it ETH_LEN bytes right and put resultant pointer to mac_header field. */
-    skb->mac_header = skb_push(skb,ETH_HLEN);
+    eh = (struct ethhdr *)skb_push(skb,ETH_HLEN);
+    skb->mac_header = (unsigned char*)eh - (unsigned char*)(skb->head);
     /*send this ethernet packet to the corresponding kernel thread.*/
     tailEthernetSchedulerQueue_MSG_ETHPACK(skb);
     return 1;

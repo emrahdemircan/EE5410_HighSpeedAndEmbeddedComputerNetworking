@@ -1,8 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Mon Jan 27 13:06:32 2014
-**      by: Qt User Interface Compiler version 4.7.0
+** Created by: Qt User Interface Compiler version 5.5.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -12,22 +11,22 @@
 
 #include <QtCore/QLocale>
 #include <QtCore/QVariant>
-#include <QtGui/QAction>
-#include <QtGui/QApplication>
-#include <QtGui/QButtonGroup>
-#include <QtGui/QComboBox>
-#include <QtGui/QGridLayout>
-#include <QtGui/QHeaderView>
-#include <QtGui/QLabel>
-#include <QtGui/QMainWindow>
-#include <QtGui/QProgressBar>
-#include <QtGui/QPushButton>
-#include <QtGui/QSpacerItem>
-#include <QtGui/QTabWidget>
-#include <QtGui/QTableWidget>
-#include <QtGui/QTextEdit>
-#include <QtGui/QVBoxLayout>
-#include <QtGui/QWidget>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QComboBox>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QMainWindow>
+#include <QtWidgets/QProgressBar>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QTabWidget>
+#include <QtWidgets/QTableWidget>
+#include <QtWidgets/QTextEdit>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
 
@@ -85,7 +84,7 @@ public:
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
-            MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
+            MainWindow->setObjectName(QStringLiteral("MainWindow"));
         MainWindow->resize(1400, 800);
         QFont font;
         font.setPointSize(8);
@@ -94,7 +93,7 @@ public:
         MainWindow->setLocale(QLocale(QLocale::Turkish, QLocale::Turkey));
         MainWindow->setIconSize(QSize(24, 24));
         centralWidget = new QWidget(MainWindow);
-        centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
+        centralWidget->setObjectName(QStringLiteral("centralWidget"));
         QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -103,50 +102,50 @@ public:
         gridLayout_12 = new QGridLayout(centralWidget);
         gridLayout_12->setSpacing(6);
         gridLayout_12->setContentsMargins(11, 11, 11, 11);
-        gridLayout_12->setObjectName(QString::fromUtf8("gridLayout_12"));
+        gridLayout_12->setObjectName(QStringLiteral("gridLayout_12"));
         gridLayout_11 = new QGridLayout();
         gridLayout_11->setSpacing(6);
-        gridLayout_11->setObjectName(QString::fromUtf8("gridLayout_11"));
+        gridLayout_11->setObjectName(QStringLiteral("gridLayout_11"));
         gridLayout = new QGridLayout();
         gridLayout->setSpacing(6);
-        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
         label = new QLabel(centralWidget);
-        label->setObjectName(QString::fromUtf8("label"));
+        label->setObjectName(QStringLiteral("label"));
 
         gridLayout->addWidget(label, 0, 0, 1, 1);
 
         schSelectComboBox = new QComboBox(centralWidget);
-        schSelectComboBox->setObjectName(QString::fromUtf8("schSelectComboBox"));
+        schSelectComboBox->setObjectName(QStringLiteral("schSelectComboBox"));
 
         gridLayout->addWidget(schSelectComboBox, 0, 1, 1, 1);
 
         label_12 = new QLabel(centralWidget);
-        label_12->setObjectName(QString::fromUtf8("label_12"));
+        label_12->setObjectName(QStringLiteral("label_12"));
 
         gridLayout->addWidget(label_12, 0, 2, 1, 1);
 
         egressLinkRateComboBox = new QComboBox(centralWidget);
-        egressLinkRateComboBox->setObjectName(QString::fromUtf8("egressLinkRateComboBox"));
+        egressLinkRateComboBox->setObjectName(QStringLiteral("egressLinkRateComboBox"));
 
         gridLayout->addWidget(egressLinkRateComboBox, 0, 3, 1, 1);
 
         label_2 = new QLabel(centralWidget);
-        label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setObjectName(QStringLiteral("label_2"));
 
         gridLayout->addWidget(label_2, 0, 4, 1, 1);
 
         backlogTimeSelectComboBox = new QComboBox(centralWidget);
-        backlogTimeSelectComboBox->setObjectName(QString::fromUtf8("backlogTimeSelectComboBox"));
+        backlogTimeSelectComboBox->setObjectName(QStringLiteral("backlogTimeSelectComboBox"));
 
         gridLayout->addWidget(backlogTimeSelectComboBox, 0, 5, 1, 1);
 
         label_3 = new QLabel(centralWidget);
-        label_3->setObjectName(QString::fromUtf8("label_3"));
+        label_3->setObjectName(QStringLiteral("label_3"));
 
         gridLayout->addWidget(label_3, 0, 6, 1, 1);
 
         queueLengthSelectComboBox = new QComboBox(centralWidget);
-        queueLengthSelectComboBox->setObjectName(QString::fromUtf8("queueLengthSelectComboBox"));
+        queueLengthSelectComboBox->setObjectName(QStringLiteral("queueLengthSelectComboBox"));
 
         gridLayout->addWidget(queueLengthSelectComboBox, 0, 7, 1, 1);
 
@@ -155,12 +154,12 @@ public:
         gridLayout->addItem(horizontalSpacer, 0, 8, 1, 1);
 
         sysStartButton = new QPushButton(centralWidget);
-        sysStartButton->setObjectName(QString::fromUtf8("sysStartButton"));
+        sysStartButton->setObjectName(QStringLiteral("sysStartButton"));
 
         gridLayout->addWidget(sysStartButton, 0, 9, 1, 1);
 
         sysStopButton = new QPushButton(centralWidget);
-        sysStopButton->setObjectName(QString::fromUtf8("sysStopButton"));
+        sysStopButton->setObjectName(QStringLiteral("sysStopButton"));
 
         gridLayout->addWidget(sysStopButton, 0, 10, 1, 1);
 
@@ -168,7 +167,7 @@ public:
         gridLayout_11->addLayout(gridLayout, 0, 0, 1, 1);
 
         tabWidget = new QTabWidget(centralWidget);
-        tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
+        tabWidget->setObjectName(QStringLiteral("tabWidget"));
         QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy1.setHorizontalStretch(0);
         sizePolicy1.setVerticalStretch(0);
@@ -178,11 +177,11 @@ public:
         tabWidget->setLayoutDirection(Qt::LeftToRight);
         tabWidget->setAutoFillBackground(false);
         statTab = new QWidget();
-        statTab->setObjectName(QString::fromUtf8("statTab"));
+        statTab->setObjectName(QStringLiteral("statTab"));
         verticalLayout = new QVBoxLayout(statTab);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
-        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         statsTable = new QTableWidget(statTab);
         if (statsTable->columnCount() < 13)
             statsTable->setColumnCount(13);
@@ -661,7 +660,7 @@ public:
         statsTable->setItem(14, 8, __qtablewidgetitem201);
         QTableWidgetItem *__qtablewidgetitem202 = new QTableWidgetItem();
         statsTable->setItem(14, 9, __qtablewidgetitem202);
-        statsTable->setObjectName(QString::fromUtf8("statsTable"));
+        statsTable->setObjectName(QStringLiteral("statsTable"));
         statsTable->setEnabled(true);
         QSizePolicy sizePolicy2(QSizePolicy::Minimum, QSizePolicy::Minimum);
         sizePolicy2.setHorizontalStretch(0);
@@ -692,22 +691,22 @@ public:
 
         gridLayout_10 = new QGridLayout();
         gridLayout_10->setSpacing(6);
-        gridLayout_10->setObjectName(QString::fromUtf8("gridLayout_10"));
+        gridLayout_10->setObjectName(QStringLiteral("gridLayout_10"));
         horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         gridLayout_10->addItem(horizontalSpacer_3, 0, 0, 1, 1);
 
         gridLayout_2 = new QGridLayout();
         gridLayout_2->setSpacing(6);
-        gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
+        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
         label_4 = new QLabel(statTab);
-        label_4->setObjectName(QString::fromUtf8("label_4"));
+        label_4->setObjectName(QStringLiteral("label_4"));
         label_4->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
 
         gridLayout_2->addWidget(label_4, 0, 0, 1, 1);
 
         progressBar_Q1_Length = new QProgressBar(statTab);
-        progressBar_Q1_Length->setObjectName(QString::fromUtf8("progressBar_Q1_Length"));
+        progressBar_Q1_Length->setObjectName(QStringLiteral("progressBar_Q1_Length"));
         progressBar_Q1_Length->setMinimumSize(QSize(140, 0));
         progressBar_Q1_Length->setFont(font);
         progressBar_Q1_Length->setMaximum(100);
@@ -720,15 +719,15 @@ public:
 
         gridLayout_3 = new QGridLayout();
         gridLayout_3->setSpacing(6);
-        gridLayout_3->setObjectName(QString::fromUtf8("gridLayout_3"));
+        gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
         label_5 = new QLabel(statTab);
-        label_5->setObjectName(QString::fromUtf8("label_5"));
+        label_5->setObjectName(QStringLiteral("label_5"));
         label_5->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
 
         gridLayout_3->addWidget(label_5, 0, 0, 1, 1);
 
         progressBar_Q2_Length = new QProgressBar(statTab);
-        progressBar_Q2_Length->setObjectName(QString::fromUtf8("progressBar_Q2_Length"));
+        progressBar_Q2_Length->setObjectName(QStringLiteral("progressBar_Q2_Length"));
         progressBar_Q2_Length->setMinimumSize(QSize(140, 0));
         progressBar_Q2_Length->setMaximum(100);
         progressBar_Q2_Length->setValue(0);
@@ -740,15 +739,15 @@ public:
 
         gridLayout_4 = new QGridLayout();
         gridLayout_4->setSpacing(6);
-        gridLayout_4->setObjectName(QString::fromUtf8("gridLayout_4"));
+        gridLayout_4->setObjectName(QStringLiteral("gridLayout_4"));
         label_6 = new QLabel(statTab);
-        label_6->setObjectName(QString::fromUtf8("label_6"));
+        label_6->setObjectName(QStringLiteral("label_6"));
         label_6->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
 
         gridLayout_4->addWidget(label_6, 0, 0, 1, 1);
 
         progressBar_Q3_Length = new QProgressBar(statTab);
-        progressBar_Q3_Length->setObjectName(QString::fromUtf8("progressBar_Q3_Length"));
+        progressBar_Q3_Length->setObjectName(QStringLiteral("progressBar_Q3_Length"));
         progressBar_Q3_Length->setMinimumSize(QSize(140, 0));
         progressBar_Q3_Length->setMinimum(0);
         progressBar_Q3_Length->setMaximum(100);
@@ -761,15 +760,15 @@ public:
 
         gridLayout_5 = new QGridLayout();
         gridLayout_5->setSpacing(6);
-        gridLayout_5->setObjectName(QString::fromUtf8("gridLayout_5"));
+        gridLayout_5->setObjectName(QStringLiteral("gridLayout_5"));
         label_7 = new QLabel(statTab);
-        label_7->setObjectName(QString::fromUtf8("label_7"));
+        label_7->setObjectName(QStringLiteral("label_7"));
         label_7->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
 
         gridLayout_5->addWidget(label_7, 0, 0, 1, 1);
 
         progressBar_Q4_Length = new QProgressBar(statTab);
-        progressBar_Q4_Length->setObjectName(QString::fromUtf8("progressBar_Q4_Length"));
+        progressBar_Q4_Length->setObjectName(QStringLiteral("progressBar_Q4_Length"));
         progressBar_Q4_Length->setMinimumSize(QSize(140, 0));
         progressBar_Q4_Length->setMaximum(100);
         progressBar_Q4_Length->setValue(0);
@@ -781,15 +780,15 @@ public:
 
         gridLayout_6 = new QGridLayout();
         gridLayout_6->setSpacing(6);
-        gridLayout_6->setObjectName(QString::fromUtf8("gridLayout_6"));
+        gridLayout_6->setObjectName(QStringLiteral("gridLayout_6"));
         label_8 = new QLabel(statTab);
-        label_8->setObjectName(QString::fromUtf8("label_8"));
+        label_8->setObjectName(QStringLiteral("label_8"));
         label_8->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
 
         gridLayout_6->addWidget(label_8, 0, 0, 1, 1);
 
         progressBar_Q5_Length = new QProgressBar(statTab);
-        progressBar_Q5_Length->setObjectName(QString::fromUtf8("progressBar_Q5_Length"));
+        progressBar_Q5_Length->setObjectName(QStringLiteral("progressBar_Q5_Length"));
         progressBar_Q5_Length->setMinimumSize(QSize(140, 0));
         progressBar_Q5_Length->setMaximum(100);
         progressBar_Q5_Length->setValue(0);
@@ -801,15 +800,15 @@ public:
 
         gridLayout_7 = new QGridLayout();
         gridLayout_7->setSpacing(6);
-        gridLayout_7->setObjectName(QString::fromUtf8("gridLayout_7"));
+        gridLayout_7->setObjectName(QStringLiteral("gridLayout_7"));
         label_9 = new QLabel(statTab);
-        label_9->setObjectName(QString::fromUtf8("label_9"));
+        label_9->setObjectName(QStringLiteral("label_9"));
         label_9->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
 
         gridLayout_7->addWidget(label_9, 0, 0, 1, 1);
 
         progressBar_Q6_Length = new QProgressBar(statTab);
-        progressBar_Q6_Length->setObjectName(QString::fromUtf8("progressBar_Q6_Length"));
+        progressBar_Q6_Length->setObjectName(QStringLiteral("progressBar_Q6_Length"));
         progressBar_Q6_Length->setMinimumSize(QSize(140, 0));
         progressBar_Q6_Length->setMaximum(100);
         progressBar_Q6_Length->setValue(0);
@@ -821,15 +820,15 @@ public:
 
         gridLayout_8 = new QGridLayout();
         gridLayout_8->setSpacing(6);
-        gridLayout_8->setObjectName(QString::fromUtf8("gridLayout_8"));
+        gridLayout_8->setObjectName(QStringLiteral("gridLayout_8"));
         label_10 = new QLabel(statTab);
-        label_10->setObjectName(QString::fromUtf8("label_10"));
+        label_10->setObjectName(QStringLiteral("label_10"));
         label_10->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
 
         gridLayout_8->addWidget(label_10, 0, 0, 1, 1);
 
         progressBar_Q7_Length = new QProgressBar(statTab);
-        progressBar_Q7_Length->setObjectName(QString::fromUtf8("progressBar_Q7_Length"));
+        progressBar_Q7_Length->setObjectName(QStringLiteral("progressBar_Q7_Length"));
         progressBar_Q7_Length->setMinimumSize(QSize(140, 0));
         progressBar_Q7_Length->setMaximum(100);
         progressBar_Q7_Length->setValue(0);
@@ -841,15 +840,15 @@ public:
 
         gridLayout_9 = new QGridLayout();
         gridLayout_9->setSpacing(6);
-        gridLayout_9->setObjectName(QString::fromUtf8("gridLayout_9"));
+        gridLayout_9->setObjectName(QStringLiteral("gridLayout_9"));
         label_11 = new QLabel(statTab);
-        label_11->setObjectName(QString::fromUtf8("label_11"));
+        label_11->setObjectName(QStringLiteral("label_11"));
         label_11->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
 
         gridLayout_9->addWidget(label_11, 0, 0, 1, 1);
 
         progressBar_Q8_Length = new QProgressBar(statTab);
-        progressBar_Q8_Length->setObjectName(QString::fromUtf8("progressBar_Q8_Length"));
+        progressBar_Q8_Length->setObjectName(QStringLiteral("progressBar_Q8_Length"));
         progressBar_Q8_Length->setMinimumSize(QSize(140, 0));
         progressBar_Q8_Length->setMaximum(100);
         progressBar_Q8_Length->setValue(0);
@@ -867,13 +866,13 @@ public:
         verticalLayout->addLayout(gridLayout_10);
 
         logEdit = new QTextEdit(statTab);
-        logEdit->setObjectName(QString::fromUtf8("logEdit"));
+        logEdit->setObjectName(QStringLiteral("logEdit"));
         sizePolicy1.setHeightForWidth(logEdit->sizePolicy().hasHeightForWidth());
         logEdit->setSizePolicy(sizePolicy1);
         logEdit->setMinimumSize(QSize(10, 1));
         logEdit->setMaximumSize(QSize(16777215, 16777215));
         QFont font7;
-        font7.setFamily(QString::fromUtf8("Courier 10 Pitch"));
+        font7.setFamily(QStringLiteral("Courier 10 Pitch"));
         font7.setPointSize(9);
         logEdit->setFont(font7);
         logEdit->setAutoFillBackground(false);
@@ -905,322 +904,322 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Output Queue Control", 0, QApplication::UnicodeUTF8));
-        label->setText(QApplication::translate("MainWindow", "QOS Scheduler Type:", 0, QApplication::UnicodeUTF8));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Output Queue Control", 0));
+        label->setText(QApplication::translate("MainWindow", "QOS Scheduler Type:", 0));
         schSelectComboBox->clear();
         schSelectComboBox->insertItems(0, QStringList()
-         << QApplication::translate("MainWindow", "FIFO", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "Round Robin", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "Weighted Round Robin", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "Deficit Round Robin", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "WF2Q", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "DTABLE", 0, QApplication::UnicodeUTF8)
+         << QApplication::translate("MainWindow", "FIFO", 0)
+         << QApplication::translate("MainWindow", "Round Robin", 0)
+         << QApplication::translate("MainWindow", "Weighted Round Robin", 0)
+         << QApplication::translate("MainWindow", "Deficit Round Robin", 0)
+         << QApplication::translate("MainWindow", "WF2Q", 0)
+         << QApplication::translate("MainWindow", "DTABLE", 0)
         );
-        label_12->setText(QApplication::translate("MainWindow", "Eggress Link Rate in MBits/sec:", 0, QApplication::UnicodeUTF8));
+        label_12->setText(QApplication::translate("MainWindow", "Eggress Link Rate in MBits/sec:", 0));
         egressLinkRateComboBox->clear();
         egressLinkRateComboBox->insertItems(0, QStringList()
-         << QApplication::translate("MainWindow", "1", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "2", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "4", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "8", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "10", 0, QApplication::UnicodeUTF8)
+         << QApplication::translate("MainWindow", "1", 0)
+         << QApplication::translate("MainWindow", "2", 0)
+         << QApplication::translate("MainWindow", "4", 0)
+         << QApplication::translate("MainWindow", "8", 0)
+         << QApplication::translate("MainWindow", "10", 0)
         );
-        label_2->setText(QApplication::translate("MainWindow", "Backlog Time in mSecs:", 0, QApplication::UnicodeUTF8));
+        label_2->setText(QApplication::translate("MainWindow", "Backlog Time in mSecs:", 0));
         backlogTimeSelectComboBox->clear();
         backlogTimeSelectComboBox->insertItems(0, QStringList()
-         << QApplication::translate("MainWindow", "0", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "5", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "25", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "50", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "100", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "250", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "500", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "1000", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "2000", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "3000", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "4000", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "5000", 0, QApplication::UnicodeUTF8)
+         << QApplication::translate("MainWindow", "0", 0)
+         << QApplication::translate("MainWindow", "5", 0)
+         << QApplication::translate("MainWindow", "25", 0)
+         << QApplication::translate("MainWindow", "50", 0)
+         << QApplication::translate("MainWindow", "100", 0)
+         << QApplication::translate("MainWindow", "250", 0)
+         << QApplication::translate("MainWindow", "500", 0)
+         << QApplication::translate("MainWindow", "1000", 0)
+         << QApplication::translate("MainWindow", "2000", 0)
+         << QApplication::translate("MainWindow", "3000", 0)
+         << QApplication::translate("MainWindow", "4000", 0)
+         << QApplication::translate("MainWindow", "5000", 0)
         );
-        label_3->setText(QApplication::translate("MainWindow", "Queue Length In KB:", 0, QApplication::UnicodeUTF8));
+        label_3->setText(QApplication::translate("MainWindow", "Queue Length In KB:", 0));
         queueLengthSelectComboBox->clear();
         queueLengthSelectComboBox->insertItems(0, QStringList()
-         << QApplication::translate("MainWindow", "10", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "50", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "100", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "250", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "500", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "1000", 0, QApplication::UnicodeUTF8)
+         << QApplication::translate("MainWindow", "10", 0)
+         << QApplication::translate("MainWindow", "50", 0)
+         << QApplication::translate("MainWindow", "100", 0)
+         << QApplication::translate("MainWindow", "250", 0)
+         << QApplication::translate("MainWindow", "500", 0)
+         << QApplication::translate("MainWindow", "1000", 0)
         );
-        sysStartButton->setText(QApplication::translate("MainWindow", "Start", 0, QApplication::UnicodeUTF8));
-        sysStopButton->setText(QApplication::translate("MainWindow", "Stop", 0, QApplication::UnicodeUTF8));
+        sysStartButton->setText(QApplication::translate("MainWindow", "Start", 0));
+        sysStopButton->setText(QApplication::translate("MainWindow", "Stop", 0));
 
         const bool __sortingEnabled = statsTable->isSortingEnabled();
         statsTable->setSortingEnabled(false);
         QTableWidgetItem *___qtablewidgetitem = statsTable->item(0, 0);
-        ___qtablewidgetitem->setText(QApplication::translate("MainWindow", "Ethernet RX", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem->setText(QApplication::translate("MainWindow", "Ethernet RX", 0));
         QTableWidgetItem *___qtablewidgetitem1 = statsTable->item(0, 2);
-        ___qtablewidgetitem1->setText(QApplication::translate("MainWindow", "Ethernet Scheduler", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem1->setText(QApplication::translate("MainWindow", "Ethernet Scheduler", 0));
         QTableWidgetItem *___qtablewidgetitem2 = statsTable->item(0, 11);
-        ___qtablewidgetitem2->setText(QApplication::translate("MainWindow", "Ethernet Tx", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem2->setText(QApplication::translate("MainWindow", "Ethernet Tx", 0));
         QTableWidgetItem *___qtablewidgetitem3 = statsTable->item(1, 0);
-        ___qtablewidgetitem3->setText(QApplication::translate("MainWindow", "Eth. Pack. In", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem3->setText(QApplication::translate("MainWindow", "Eth. Pack. In", 0));
         QTableWidgetItem *___qtablewidgetitem4 = statsTable->item(1, 1);
-        ___qtablewidgetitem4->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem4->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem5 = statsTable->item(1, 2);
-        ___qtablewidgetitem5->setText(QApplication::translate("MainWindow", "Eth. Pack. In", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem5->setText(QApplication::translate("MainWindow", "Eth. Pack. In", 0));
         QTableWidgetItem *___qtablewidgetitem6 = statsTable->item(1, 3);
-        ___qtablewidgetitem6->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem6->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem7 = statsTable->item(1, 11);
-        ___qtablewidgetitem7->setText(QApplication::translate("MainWindow", "Eth. Pack. In", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem7->setText(QApplication::translate("MainWindow", "Eth. Pack. In", 0));
         QTableWidgetItem *___qtablewidgetitem8 = statsTable->item(1, 12);
-        ___qtablewidgetitem8->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem8->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem9 = statsTable->item(2, 0);
-        ___qtablewidgetitem9->setText(QApplication::translate("MainWindow", "Queued", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem9->setText(QApplication::translate("MainWindow", "Queued", 0));
         QTableWidgetItem *___qtablewidgetitem10 = statsTable->item(2, 1);
-        ___qtablewidgetitem10->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem10->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem11 = statsTable->item(2, 3);
-        ___qtablewidgetitem11->setText(QApplication::translate("MainWindow", "Queued", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem11->setText(QApplication::translate("MainWindow", "Queued", 0));
         QTableWidgetItem *___qtablewidgetitem12 = statsTable->item(2, 4);
-        ___qtablewidgetitem12->setText(QApplication::translate("MainWindow", "Not queued", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem12->setText(QApplication::translate("MainWindow", "Not queued", 0));
         QTableWidgetItem *___qtablewidgetitem13 = statsTable->item(2, 5);
-        ___qtablewidgetitem13->setText(QApplication::translate("MainWindow", "Dequeued", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem13->setText(QApplication::translate("MainWindow", "Dequeued", 0));
         QTableWidgetItem *___qtablewidgetitem14 = statsTable->item(2, 6);
-        ___qtablewidgetitem14->setText(QApplication::translate("MainWindow", "Min Q Delay(sec:nsec)", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem14->setText(QApplication::translate("MainWindow", "Min Q Delay(sec:nsec)", 0));
         QTableWidgetItem *___qtablewidgetitem15 = statsTable->item(2, 7);
-        ___qtablewidgetitem15->setText(QApplication::translate("MainWindow", "Max Q Delay(sec:nsec)", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem15->setText(QApplication::translate("MainWindow", "Max Q Delay(sec:nsec)", 0));
         QTableWidgetItem *___qtablewidgetitem16 = statsTable->item(2, 8);
-        ___qtablewidgetitem16->setText(QApplication::translate("MainWindow", "Avg Q Delay (msec)", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem16->setText(QApplication::translate("MainWindow", "Avg Q Delay (msec)", 0));
         QTableWidgetItem *___qtablewidgetitem17 = statsTable->item(2, 9);
-        ___qtablewidgetitem17->setText(QApplication::translate("MainWindow", "Current Q Size", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem17->setText(QApplication::translate("MainWindow", "Current Q Size", 0));
         QTableWidgetItem *___qtablewidgetitem18 = statsTable->item(2, 10);
-        ___qtablewidgetitem18->setText(QApplication::translate("MainWindow", "Overflowed Bytes", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem18->setText(QApplication::translate("MainWindow", "Overflowed Bytes", 0));
         QTableWidgetItem *___qtablewidgetitem19 = statsTable->item(2, 11);
-        ___qtablewidgetitem19->setText(QApplication::translate("MainWindow", "Queued", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem19->setText(QApplication::translate("MainWindow", "Queued", 0));
         QTableWidgetItem *___qtablewidgetitem20 = statsTable->item(2, 12);
-        ___qtablewidgetitem20->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem20->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem21 = statsTable->item(3, 0);
-        ___qtablewidgetitem21->setText(QApplication::translate("MainWindow", "Not queued", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem21->setText(QApplication::translate("MainWindow", "Not queued", 0));
         QTableWidgetItem *___qtablewidgetitem22 = statsTable->item(3, 1);
-        ___qtablewidgetitem22->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem22->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem23 = statsTable->item(3, 2);
-        ___qtablewidgetitem23->setText(QApplication::translate("MainWindow", "Queue 1", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem23->setText(QApplication::translate("MainWindow", "Queue 1", 0));
         QTableWidgetItem *___qtablewidgetitem24 = statsTable->item(3, 3);
-        ___qtablewidgetitem24->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem24->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem25 = statsTable->item(3, 4);
-        ___qtablewidgetitem25->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem25->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem26 = statsTable->item(3, 5);
-        ___qtablewidgetitem26->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem26->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem27 = statsTable->item(3, 6);
-        ___qtablewidgetitem27->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem27->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem28 = statsTable->item(3, 7);
-        ___qtablewidgetitem28->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem28->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem29 = statsTable->item(3, 8);
-        ___qtablewidgetitem29->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem29->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem30 = statsTable->item(3, 9);
-        ___qtablewidgetitem30->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem30->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem31 = statsTable->item(3, 10);
-        ___qtablewidgetitem31->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem31->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem32 = statsTable->item(3, 11);
-        ___qtablewidgetitem32->setText(QApplication::translate("MainWindow", "Not queued", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem32->setText(QApplication::translate("MainWindow", "Not queued", 0));
         QTableWidgetItem *___qtablewidgetitem33 = statsTable->item(3, 12);
-        ___qtablewidgetitem33->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem33->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem34 = statsTable->item(4, 0);
-        ___qtablewidgetitem34->setText(QApplication::translate("MainWindow", "Dequeued", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem34->setText(QApplication::translate("MainWindow", "Dequeued", 0));
         QTableWidgetItem *___qtablewidgetitem35 = statsTable->item(4, 1);
-        ___qtablewidgetitem35->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem35->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem36 = statsTable->item(4, 2);
-        ___qtablewidgetitem36->setText(QApplication::translate("MainWindow", "Queue 2", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem36->setText(QApplication::translate("MainWindow", "Queue 2", 0));
         QTableWidgetItem *___qtablewidgetitem37 = statsTable->item(4, 3);
-        ___qtablewidgetitem37->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem37->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem38 = statsTable->item(4, 4);
-        ___qtablewidgetitem38->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem38->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem39 = statsTable->item(4, 5);
-        ___qtablewidgetitem39->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem39->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem40 = statsTable->item(4, 6);
-        ___qtablewidgetitem40->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem40->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem41 = statsTable->item(4, 7);
-        ___qtablewidgetitem41->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem41->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem42 = statsTable->item(4, 8);
-        ___qtablewidgetitem42->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem42->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem43 = statsTable->item(4, 9);
-        ___qtablewidgetitem43->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem43->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem44 = statsTable->item(4, 10);
-        ___qtablewidgetitem44->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem44->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem45 = statsTable->item(4, 11);
-        ___qtablewidgetitem45->setText(QApplication::translate("MainWindow", "Dequeued", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem45->setText(QApplication::translate("MainWindow", "Dequeued", 0));
         QTableWidgetItem *___qtablewidgetitem46 = statsTable->item(4, 12);
-        ___qtablewidgetitem46->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem46->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem47 = statsTable->item(5, 0);
-        ___qtablewidgetitem47->setText(QApplication::translate("MainWindow", "Processed", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem47->setText(QApplication::translate("MainWindow", "Processed", 0));
         QTableWidgetItem *___qtablewidgetitem48 = statsTable->item(5, 1);
-        ___qtablewidgetitem48->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem48->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem49 = statsTable->item(5, 2);
-        ___qtablewidgetitem49->setText(QApplication::translate("MainWindow", "Queue 3", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem49->setText(QApplication::translate("MainWindow", "Queue 3", 0));
         QTableWidgetItem *___qtablewidgetitem50 = statsTable->item(5, 3);
-        ___qtablewidgetitem50->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem50->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem51 = statsTable->item(5, 4);
-        ___qtablewidgetitem51->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem51->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem52 = statsTable->item(5, 5);
-        ___qtablewidgetitem52->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem52->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem53 = statsTable->item(5, 6);
-        ___qtablewidgetitem53->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem53->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem54 = statsTable->item(5, 7);
-        ___qtablewidgetitem54->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem54->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem55 = statsTable->item(5, 8);
-        ___qtablewidgetitem55->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem55->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem56 = statsTable->item(5, 9);
-        ___qtablewidgetitem56->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem56->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem57 = statsTable->item(5, 10);
-        ___qtablewidgetitem57->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem57->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem58 = statsTable->item(5, 11);
-        ___qtablewidgetitem58->setText(QApplication::translate("MainWindow", "Processed", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem58->setText(QApplication::translate("MainWindow", "Processed", 0));
         QTableWidgetItem *___qtablewidgetitem59 = statsTable->item(5, 12);
-        ___qtablewidgetitem59->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem59->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem60 = statsTable->item(6, 0);
-        ___qtablewidgetitem60->setText(QApplication::translate("MainWindow", "Data Processed", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem60->setText(QApplication::translate("MainWindow", "Data Processed", 0));
         QTableWidgetItem *___qtablewidgetitem61 = statsTable->item(6, 1);
-        ___qtablewidgetitem61->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem61->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem62 = statsTable->item(6, 2);
-        ___qtablewidgetitem62->setText(QApplication::translate("MainWindow", "Queue 4", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem62->setText(QApplication::translate("MainWindow", "Queue 4", 0));
         QTableWidgetItem *___qtablewidgetitem63 = statsTable->item(6, 3);
-        ___qtablewidgetitem63->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem63->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem64 = statsTable->item(6, 4);
-        ___qtablewidgetitem64->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem64->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem65 = statsTable->item(6, 5);
-        ___qtablewidgetitem65->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem65->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem66 = statsTable->item(6, 6);
-        ___qtablewidgetitem66->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem66->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem67 = statsTable->item(6, 7);
-        ___qtablewidgetitem67->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem67->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem68 = statsTable->item(6, 8);
-        ___qtablewidgetitem68->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem68->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem69 = statsTable->item(6, 9);
-        ___qtablewidgetitem69->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem69->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem70 = statsTable->item(6, 10);
-        ___qtablewidgetitem70->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem70->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem71 = statsTable->item(6, 11);
-        ___qtablewidgetitem71->setText(QApplication::translate("MainWindow", "Data Processed", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem71->setText(QApplication::translate("MainWindow", "Data Processed", 0));
         QTableWidgetItem *___qtablewidgetitem72 = statsTable->item(6, 12);
-        ___qtablewidgetitem72->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem72->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem73 = statsTable->item(7, 0);
-        ___qtablewidgetitem73->setText(QApplication::translate("MainWindow", "IPC Processed", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem73->setText(QApplication::translate("MainWindow", "IPC Processed", 0));
         QTableWidgetItem *___qtablewidgetitem74 = statsTable->item(7, 1);
-        ___qtablewidgetitem74->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem74->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem75 = statsTable->item(7, 2);
-        ___qtablewidgetitem75->setText(QApplication::translate("MainWindow", "Queue 5", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem75->setText(QApplication::translate("MainWindow", "Queue 5", 0));
         QTableWidgetItem *___qtablewidgetitem76 = statsTable->item(7, 3);
-        ___qtablewidgetitem76->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem76->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem77 = statsTable->item(7, 4);
-        ___qtablewidgetitem77->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem77->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem78 = statsTable->item(7, 5);
-        ___qtablewidgetitem78->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem78->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem79 = statsTable->item(7, 6);
-        ___qtablewidgetitem79->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem79->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem80 = statsTable->item(7, 7);
-        ___qtablewidgetitem80->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem80->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem81 = statsTable->item(7, 8);
-        ___qtablewidgetitem81->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem81->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem82 = statsTable->item(7, 9);
-        ___qtablewidgetitem82->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem82->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem83 = statsTable->item(7, 10);
-        ___qtablewidgetitem83->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem83->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem84 = statsTable->item(7, 11);
-        ___qtablewidgetitem84->setText(QApplication::translate("MainWindow", "IPC Processed", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem84->setText(QApplication::translate("MainWindow", "IPC Processed", 0));
         QTableWidgetItem *___qtablewidgetitem85 = statsTable->item(7, 12);
-        ___qtablewidgetitem85->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem85->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem86 = statsTable->item(8, 2);
-        ___qtablewidgetitem86->setText(QApplication::translate("MainWindow", "Queue 6", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem86->setText(QApplication::translate("MainWindow", "Queue 6", 0));
         QTableWidgetItem *___qtablewidgetitem87 = statsTable->item(8, 3);
-        ___qtablewidgetitem87->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem87->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem88 = statsTable->item(8, 4);
-        ___qtablewidgetitem88->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem88->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem89 = statsTable->item(8, 5);
-        ___qtablewidgetitem89->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem89->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem90 = statsTable->item(8, 6);
-        ___qtablewidgetitem90->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem90->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem91 = statsTable->item(8, 7);
-        ___qtablewidgetitem91->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem91->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem92 = statsTable->item(8, 8);
-        ___qtablewidgetitem92->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem92->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem93 = statsTable->item(8, 9);
-        ___qtablewidgetitem93->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem93->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem94 = statsTable->item(8, 10);
-        ___qtablewidgetitem94->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem94->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem95 = statsTable->item(8, 11);
-        ___qtablewidgetitem95->setText(QApplication::translate("MainWindow", "Eth. Pack. Out", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem95->setText(QApplication::translate("MainWindow", "Eth. Pack. Out", 0));
         QTableWidgetItem *___qtablewidgetitem96 = statsTable->item(8, 12);
-        ___qtablewidgetitem96->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem96->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem97 = statsTable->item(9, 2);
-        ___qtablewidgetitem97->setText(QApplication::translate("MainWindow", "Queue 7", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem97->setText(QApplication::translate("MainWindow", "Queue 7", 0));
         QTableWidgetItem *___qtablewidgetitem98 = statsTable->item(9, 3);
-        ___qtablewidgetitem98->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem98->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem99 = statsTable->item(9, 4);
-        ___qtablewidgetitem99->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem99->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem100 = statsTable->item(9, 5);
-        ___qtablewidgetitem100->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem100->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem101 = statsTable->item(9, 6);
-        ___qtablewidgetitem101->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem101->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem102 = statsTable->item(9, 7);
-        ___qtablewidgetitem102->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem102->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem103 = statsTable->item(9, 8);
-        ___qtablewidgetitem103->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem103->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem104 = statsTable->item(9, 9);
-        ___qtablewidgetitem104->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem104->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem105 = statsTable->item(9, 10);
-        ___qtablewidgetitem105->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem105->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem106 = statsTable->item(9, 11);
-        ___qtablewidgetitem106->setText(QApplication::translate("MainWindow", "Send Succeded", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem106->setText(QApplication::translate("MainWindow", "Send Succeded", 0));
         QTableWidgetItem *___qtablewidgetitem107 = statsTable->item(9, 12);
-        ___qtablewidgetitem107->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem107->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem108 = statsTable->item(10, 2);
-        ___qtablewidgetitem108->setText(QApplication::translate("MainWindow", "Queue 8", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem108->setText(QApplication::translate("MainWindow", "Queue 8", 0));
         QTableWidgetItem *___qtablewidgetitem109 = statsTable->item(10, 3);
-        ___qtablewidgetitem109->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem109->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem110 = statsTable->item(10, 4);
-        ___qtablewidgetitem110->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem110->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem111 = statsTable->item(10, 5);
-        ___qtablewidgetitem111->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem111->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem112 = statsTable->item(10, 6);
-        ___qtablewidgetitem112->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem112->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem113 = statsTable->item(10, 7);
-        ___qtablewidgetitem113->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem113->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem114 = statsTable->item(10, 8);
-        ___qtablewidgetitem114->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem114->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem115 = statsTable->item(10, 9);
-        ___qtablewidgetitem115->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem115->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem116 = statsTable->item(10, 10);
-        ___qtablewidgetitem116->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem116->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem117 = statsTable->item(10, 11);
-        ___qtablewidgetitem117->setText(QApplication::translate("MainWindow", "Send Failed", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem117->setText(QApplication::translate("MainWindow", "Send Failed", 0));
         QTableWidgetItem *___qtablewidgetitem118 = statsTable->item(10, 12);
-        ___qtablewidgetitem118->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem118->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem119 = statsTable->item(11, 2);
-        ___qtablewidgetitem119->setText(QApplication::translate("MainWindow", "Processed", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem119->setText(QApplication::translate("MainWindow", "Processed", 0));
         QTableWidgetItem *___qtablewidgetitem120 = statsTable->item(11, 3);
-        ___qtablewidgetitem120->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem120->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem121 = statsTable->item(12, 2);
-        ___qtablewidgetitem121->setText(QApplication::translate("MainWindow", "Data Processed", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem121->setText(QApplication::translate("MainWindow", "Data Processed", 0));
         QTableWidgetItem *___qtablewidgetitem122 = statsTable->item(12, 3);
-        ___qtablewidgetitem122->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem122->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem123 = statsTable->item(13, 2);
-        ___qtablewidgetitem123->setText(QApplication::translate("MainWindow", "Send Succeded", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem123->setText(QApplication::translate("MainWindow", "Send Succeded", 0));
         QTableWidgetItem *___qtablewidgetitem124 = statsTable->item(13, 3);
-        ___qtablewidgetitem124->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem124->setText(QApplication::translate("MainWindow", "-", 0));
         QTableWidgetItem *___qtablewidgetitem125 = statsTable->item(14, 2);
-        ___qtablewidgetitem125->setText(QApplication::translate("MainWindow", "Send Failed", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem125->setText(QApplication::translate("MainWindow", "Send Failed", 0));
         QTableWidgetItem *___qtablewidgetitem126 = statsTable->item(14, 3);
-        ___qtablewidgetitem126->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
+        ___qtablewidgetitem126->setText(QApplication::translate("MainWindow", "-", 0));
         statsTable->setSortingEnabled(__sortingEnabled);
 
-        label_4->setText(QApplication::translate("MainWindow", "Q1 Usage", 0, QApplication::UnicodeUTF8));
-        label_5->setText(QApplication::translate("MainWindow", "Q2 Usage", 0, QApplication::UnicodeUTF8));
-        label_6->setText(QApplication::translate("MainWindow", "Q3 Usage", 0, QApplication::UnicodeUTF8));
-        label_7->setText(QApplication::translate("MainWindow", "Q4 Usage", 0, QApplication::UnicodeUTF8));
-        label_8->setText(QApplication::translate("MainWindow", "Q5 Usage", 0, QApplication::UnicodeUTF8));
-        label_9->setText(QApplication::translate("MainWindow", "Q6 Usage", 0, QApplication::UnicodeUTF8));
-        label_10->setText(QApplication::translate("MainWindow", "Q7 Usage", 0, QApplication::UnicodeUTF8));
-        label_11->setText(QApplication::translate("MainWindow", "Q8 Usage", 0, QApplication::UnicodeUTF8));
-        tabWidget->setTabText(tabWidget->indexOf(statTab), QApplication::translate("MainWindow", "Statistics and Logs", 0, QApplication::UnicodeUTF8));
+        label_4->setText(QApplication::translate("MainWindow", "Q1 Usage", 0));
+        label_5->setText(QApplication::translate("MainWindow", "Q2 Usage", 0));
+        label_6->setText(QApplication::translate("MainWindow", "Q3 Usage", 0));
+        label_7->setText(QApplication::translate("MainWindow", "Q4 Usage", 0));
+        label_8->setText(QApplication::translate("MainWindow", "Q5 Usage", 0));
+        label_9->setText(QApplication::translate("MainWindow", "Q6 Usage", 0));
+        label_10->setText(QApplication::translate("MainWindow", "Q7 Usage", 0));
+        label_11->setText(QApplication::translate("MainWindow", "Q8 Usage", 0));
+        tabWidget->setTabText(tabWidget->indexOf(statTab), QApplication::translate("MainWindow", "Statistics and Logs", 0));
     } // retranslateUi
 
 };
