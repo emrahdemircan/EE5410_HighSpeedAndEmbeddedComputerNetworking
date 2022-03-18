@@ -5,5 +5,3 @@ The project includes two applications:
 Refer to the paper: "Providing QoS with the Deficit Table Scheduler" by "Rau´l Martı´nez-Mora´ is, Francisco J. Alfaro-Corte´ s, and Jose´ L. Sa´nchez"
 
 This is not an emulation project, all algorithms are run on a linux machine and tested in real-time.
-
-Project report is included.
